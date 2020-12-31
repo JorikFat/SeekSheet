@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ImageView android:id="@+id/iv_sheet_greenPlayer"
+        style="@style/Apptheme.Cell"
+        />
+
+    <ImageView android:id="@+id/iv_sheet_greenPlayer1"
+        style="@style/Apptheme.Cell"
+        />
+
+    <ImageView android:id="@+id/iv_sheet_greenPlayer2"
+        style="@style/Apptheme.Cell"
+        />
+
+    <ImageView android:id="@+id/iv_sheet_greenPlayer3"
+        style="@style/Apptheme.Cell"
+        />
+
+    <ImageView android:id="@+id/iv_sheet_greenPlayer4"
+        style="@style/Apptheme.Cell"
+        />
+
+    <ImageView android:id="@+id/iv_sheet_greenPlayer5"
+        style="@style/Apptheme.Cell"
+        />
+</merge>
