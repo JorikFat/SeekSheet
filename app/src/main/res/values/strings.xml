@@ -7,26 +7,26 @@
     <string name="personGreen">Грин</string>
     <string name="personMustard">Мастард</string>
     <string name="personPeacock">Пикок</string>
-    <string name="personPlum">План</string>
+    <string name="personPlum">Плам</string>
     <string name="personScarlett">Скарлет</string>
 
     <string name="which">Чем?</string>
-    <string name="toolWrench">Гаечный ключ</string>
     <string name="toolСandlestick">Подсвечник</string>
     <string name="toolDagger">Кинжал</string>
     <string name="toolRevolver">Револьвер</string>
-    <string name="toolRope">Веревка</string>
+    <string name="toolRope">Верёвка</string>
+    <string name="toolWrench">Гаечный ключ</string>
 
     <string name="where">Где?</string>
-    <string name="placeBath">Ванная</string>
-    <string name="placeCabinet">Кабинет</string>
-    <string name="placeDining">Столовая</string>
+    <string name="placeBallroom">Бальный зал</string>
     <string name="placeBilliard">Бильярдная</string>
-    <string name="placeGarage">Гараж</string>
-    <string name="placeBedroom">Спальня</string>
-    <string name="placeLivingroom">Гостинная</string>
-    <string name="placeKitchen">Кухня</string>
     <string name="placeWinterGarden">Зимний сад</string>
+    <string name="placeDining">Столовая</string>
+    <string name="placeBath">Ванная</string>
+    <string name="placeKitchen">Кухня</string>
+    <string name="placeLibrary">Библиотека</string>
+    <string name="placeLivingroom">Гостинная</string>
+    <string name="placeCabinet">Кабинет</string>
 
     <string name="selectIcon_title">Выберите иконку</string>
 </resources>
