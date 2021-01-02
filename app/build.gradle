@@ -9,8 +9,8 @@ android {
         minSdkVersion 16
         targetSdkVersion 30
         versionCode 1
-        versionName "1.0"
-
+        versionName "0.1.0 [6]"
+        vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -30,4 +30,27 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
+}
+
+import java.util.regex.Pattern
+task('incrementVersionName') doFirst {
+    //mask: 0.0.0 [0]
+    def manifestFile = file("build.gradle")
+    def patternVersionNumber = Pattern.compile("versionName \"(\\d+)\\.(\\d+)\\.(\\d+) \\[(\\d+)\\]\"")
+    def manifestText = manifestFile.getText()
+    def matcherVersionNumber = patternVersionNumber.matcher(manifestText)
+    matcherVersionNumber.find()
+    def majorVersion = Integer.parseInt(matcherVersionNumber.group(1))
+    def minorVersion = Integer.parseInt(matcherVersionNumber.group(2))
+    def bugfixVersion = Integer.parseInt(matcherVersionNumber.group(3))
+    def buildNumber = Integer.parseInt(matcherVersionNumber.group(4))
+    def mNextVersionName = majorVersion + "." + minorVersion + "." + bugfixVersion + " [" + ++buildNumber + "]"
+    def manifestContent = matcherVersionNumber.replaceAll("versionName \"" + mNextVersionName + "\"")
+    manifestFile.write(manifestContent)
+}
+
+tasks.whenTaskAdded { task ->
+    if (task.name == 'generateReleaseBuildConfig' || task.name == 'generateDebugBuildConfig') {
+        task.dependsOn 'incrementVersionName'
+    }
 }
