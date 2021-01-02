@@ -73,16 +73,15 @@
 
             </TableRow>
 
-            <TableRow style="@style/SheetTable.Row">
+            <TableRow android:id="@+id/tr_sheet_personGreen"
+                style="@style/SheetTable.Row">
 
                 <TextView android:id="@+id/tv_sheet_personGreen"
                     style="@style/SheetTable.Header"
                     android:text="@string/personGreen"
                     />
 
-                <include android:id="@+id/green"
-                    layout="@layout/layout_cells"
-                    />
+                <include layout="@layout/layout_cells" />
             </TableRow>
 
             <TableRow style="@style/SheetTable.Row">

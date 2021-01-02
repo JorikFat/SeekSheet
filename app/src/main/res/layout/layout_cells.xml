@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <ImageView android:id="@+id/iv_sheet_greenPlayer"
+    <ImageView android:id="@+id/iv_sheet_player"
         style="@style/SheetTable.FillCell"
         />
 
-    <ImageView android:id="@+id/iv_sheet_greenPlayer1"
+    <ImageView android:id="@+id/iv_sheet_player1"
         style="@style/SheetTable.FillCell"
         />
 
-    <ImageView android:id="@+id/iv_sheet_greenPlayer2"
+    <ImageView android:id="@+id/iv_sheet_player2"
         style="@style/SheetTable.FillCell"
         />
 
-    <ImageView android:id="@+id/iv_sheet_greenPlayer3"
+    <ImageView android:id="@+id/iv_sheet_player3"
         style="@style/SheetTable.FillCell"
         />
 
-    <ImageView android:id="@+id/iv_sheet_greenPlayer4"
+    <ImageView android:id="@+id/iv_sheet_player4"
         style="@style/SheetTable.FillCell"
         />
 
-    <ImageView android:id="@+id/iv_sheet_greenPlayer5"
+    <ImageView android:id="@+id/iv_sheet_player5"
         style="@style/SheetTable.FillCell"
         />
 </merge>

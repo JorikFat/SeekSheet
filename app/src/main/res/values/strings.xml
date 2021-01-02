@@ -27,4 +27,6 @@
     <string name="placeLivingroom">Гостинная</string>
     <string name="placeKitchen">Кухня</string>
     <string name="placeWinterGarden">Зимний сад</string>
+
+    <string name="selectIcon_title">Выберите иконку</string>
 </resources>
