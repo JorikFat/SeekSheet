@@ -11,30 +11,35 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/ic_rectangle"
+        android:layout_margin="16dp"
         />
 
     <ImageView android:id="@+id/iv_selectIcon_check"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/ic_check"
+        android:layout_margin="16dp"
         />
 
     <ImageView android:id="@+id/iv_selectIcon_cross"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/ic_cross"
+        android:layout_margin="16dp"
         />
 
     <ImageView android:id="@+id/iv_selectIcon_exclamation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/ic_exclamation"
+        android:layout_margin="16dp"
         />
 
     <ImageView android:id="@+id/iv_selectIcon_question"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/ic_question"
+        android:layout_margin="16dp"
         />
 
 </LinearLayout>

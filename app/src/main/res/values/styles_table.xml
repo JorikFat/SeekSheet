@@ -21,6 +21,7 @@
         <item name="android:layout_weight">1</item>
         <item name="android:scaleType">center</item>
         <item name="srcCompat">@drawable/ic_empty</item>
+        <item name="android:onClick">onCellClick</item>
     </style>
 
     <style name="SheetTable.PlayerCell" parent="SheetTable.FillCell">
