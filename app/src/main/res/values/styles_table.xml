@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="SheetTable"/>
+
+    <style name="SheetTable.Row">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="SheetTable.Cell">
+        <item name="android:layout_height">30dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_margin">1.5dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/bg_rectangle_white</item>
+        <item name="android:padding">4dp</item>
+    </style>
+
+    <style name="SheetTable.FillCell" parent="SheetTable.Cell">
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="SheetTable.PlayerCell" parent="SheetTable.FillCell">
+        <item name="android:layout_height">30dp</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:maxLength">2</item>
+    </style>
+
+    <style name="SheetTable.Header" parent="SheetTable.Cell">
+        <item name="android:textColor">@color/sheetBlue</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textStyle">italic|bold</item>
+    </style>
+
+    <style name="SheetTable.Title" parent="SheetTable.Header">
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+</resources>

@@ -3,488 +3,338 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SheetActivity">
+    android:background="@color/sheetBlue"
+    tools:context=".SheetActivity"
+    >
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:paddingVertical="4dp"
+        android:clipToPadding="false"
+        >
 
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="4dp"
             >
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            <TableRow style="@style/SheetTable.Row">
 
                 <TextView android:id="@+id/tv_sheet_playersTag"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Игроки"
+                    style="@style/SheetTable.Title"
+                    android:textAllCaps="true"
+                    android:background="@android:color/transparent"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    android:text="@string/sheetPlayers"
                     />
 
                 <Space
                     android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:layout_weight="1" />
-
-                <TextView android:id="@+id/tv_sheet_player1name"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_weight="1"
-                    android:gravity="center_horizontal"
-                    android:text="И_1"
                     />
 
-                <TextView android:id="@+id/tv_sheet_player2name"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal"
-                    android:text="И_2"
+                <EditText android:id="@+id/tv_sheet_player1name"
+                    style="@style/SheetTable.PlayerCell"
+                    tools:text="P1"
                     />
 
-                <TextView android:id="@+id/tv_sheet_player3name"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal"
-                    android:text="И_3"
+                <EditText android:id="@+id/tv_sheet_player2name"
+                    style="@style/SheetTable.PlayerCell"
+                    tools:text="P2"
                     />
 
-                <TextView android:id="@+id/tv_sheet_player4name"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal"
-                    android:text="И_4"
+                <EditText android:id="@+id/tv_sheet_player3name"
+                    style="@style/SheetTable.PlayerCell"
+                    tools:text="P3"
                     />
 
-                <TextView android:id="@+id/tv_sheet_player5name"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal"
-                    android:text="И_5"
+                <EditText android:id="@+id/tv_sheet_player4name"
+                    style="@style/SheetTable.PlayerCell"
+                    tools:text="P4"
+                    />
+
+                <EditText android:id="@+id/tv_sheet_player5name"
+                    style="@style/SheetTable.PlayerCell"
+                    tools:text="P5"
                     />
             </TableRow>
 
             <!--Кто-->
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            <TableRow style="@style/SheetTable.Row">
 
                 <TextView android:id="@+id/tv_sheet_who"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
+                    style="@style/SheetTable.Title"
                     android:text="@string/who"
                     />
 
             </TableRow>
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                >
+            <TableRow style="@style/SheetTable.Row">
 
                 <TextView android:id="@+id/tv_sheet_personGreen"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
+                    style="@style/SheetTable.Header"
                     android:text="@string/personGreen"
                     />
 
                 <include android:id="@+id/green"
                     layout="@layout/layout_cells"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     />
             </TableRow>
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                >
+            <TableRow style="@style/SheetTable.Row">
 
                 <TextView android:id="@+id/tv_sheet_personMustard"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
+                    style="@style/SheetTable.Header"
                     android:text="@string/personMustard"
                     />
 
                 <include android:id="@+id/mustard"
                     layout="@layout/layout_cells"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     />
 
             </TableRow>
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                >
+            <TableRow style="@style/SheetTable.Row">
 
                 <TextView android:id="@+id/tv_sheet_personPickok"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
+                    style="@style/SheetTable.Header"
                     android:text="@string/personPeacock"
                     />
 
                 <include android:id="@+id/pickok"
                     layout="@layout/layout_cells"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     />
 
             </TableRow>
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                >
+            <TableRow style="@style/SheetTable.Row">
 
                 <TextView android:id="@+id/tv_sheet_personPlum"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
+                    style="@style/SheetTable.Header"
                     android:text="@string/personPlum"
                     />
 
                 <include android:id="@+id/plan"
                     layout="@layout/layout_cells"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     />
 
             </TableRow>
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                >
+            <TableRow style="@style/SheetTable.Row">
 
                 <TextView android:id="@+id/tv_sheet_personScarlett"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
+                    style="@style/SheetTable.Header"
                     android:text="@string/personScarlett"
                     />
 
                 <include android:id="@+id/skarlet"
                     layout="@layout/layout_cells"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     />
 
             </TableRow>
 
             <!--Чем-->
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            <TableRow style="@style/SheetTable.Row">
 
-                <TextView android:id="@+id/tv_sheet_which"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:text="@string/where"
-                    />
+                <TextView
+                    android:id="@+id/tv_sheet_which"
+                    style="@style/SheetTable.Title"
+                    android:text="@string/which" />
 
             </TableRow>
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                >
+            <TableRow style="@style/SheetTable.Row">
 
                 <TextView android:id="@+id/tv_sheet_toolWrench"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
+                    style="@style/SheetTable.Header"
                     android:text="@string/toolWrench"
                     />
 
                 <include android:id="@+id/skarlet"
                     layout="@layout/layout_cells"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     />
 
             </TableRow>
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                >
+            <TableRow style="@style/SheetTable.Row">
 
                 <TextView android:id="@+id/tv_sheet_toolСandlestick"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
+                    style="@style/SheetTable.Header"
                     android:text="@string/toolСandlestick"
                     />
 
                 <include android:id="@+id/skarlet"
                     layout="@layout/layout_cells"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     />
 
             </TableRow>
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                >
+            <TableRow style="@style/SheetTable.Row">
 
                 <TextView android:id="@+id/tv_sheet_toolDagger"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
+                    style="@style/SheetTable.Header"
                     android:text="@string/toolDagger"
                     />
 
                 <include android:id="@+id/skarlet"
                     layout="@layout/layout_cells"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     />
 
             </TableRow>
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                >
+            <TableRow style="@style/SheetTable.Row">
 
                 <TextView android:id="@+id/tv_sheet_toolRevolver"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
+                    style="@style/SheetTable.Header"
                     android:text="@string/toolRevolver"
                     />
 
                 <include android:id="@+id/skarlet"
                     layout="@layout/layout_cells"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     />
 
             </TableRow>
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                >
+            <TableRow style="@style/SheetTable.Row">
 
                 <TextView android:id="@+id/tv_sheet_toolRope"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
+                    style="@style/SheetTable.Header"
                     android:text="@string/toolRope"
                     />
 
                 <include android:id="@+id/skarlet"
                     layout="@layout/layout_cells"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     />
 
             </TableRow>
 
             <!--Где-->
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            <TableRow style="@style/SheetTable.Row">
 
                 <TextView android:id="@+id/tv_sheet_where"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
+                    style="@style/SheetTable.Title"
                     android:text="@string/where"
                     />
 
             </TableRow>
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                >
+            <TableRow style="@style/SheetTable.Row">
 
                 <TextView android:id="@+id/tv_sheet_whereBath"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
+                    style="@style/SheetTable.Header"
                     android:text="@string/placeBath"
                     />
 
                 <include android:id="@+id/skarlet"
                     layout="@layout/layout_cells"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     />
 
             </TableRow>
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                >
+            <TableRow style="@style/SheetTable.Row">
 
                 <TextView android:id="@+id/tv_sheet_whereCabinet"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
+                    style="@style/SheetTable.Header"
                     android:text="@string/placeCabinet"
                     />
 
                 <include android:id="@+id/skarlet"
                     layout="@layout/layout_cells"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     />
 
             </TableRow>
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                >
+            <TableRow style="@style/SheetTable.Row">
 
                 <TextView android:id="@+id/tv_sheet_whereDining"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
+                    style="@style/SheetTable.Header"
                     android:text="@string/placeDining"
                     />
 
                 <include android:id="@+id/skarlet"
                     layout="@layout/layout_cells"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     />
 
             </TableRow>
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                >
+            <TableRow style="@style/SheetTable.Row">
 
                 <TextView android:id="@+id/tv_sheet_whereBilliard"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
+                    style="@style/SheetTable.Header"
                     android:text="@string/placeBilliard"
                     />
 
                 <include android:id="@+id/skarlet"
                     layout="@layout/layout_cells"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     />
 
             </TableRow>
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                >
+            <TableRow style="@style/SheetTable.Row">
 
                 <TextView android:id="@+id/tv_sheet_whereGarage"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
+                    style="@style/SheetTable.Header"
                     android:text="@string/placeGarage"
                     />
 
                 <include android:id="@+id/skarlet"
                     layout="@layout/layout_cells"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     />
 
             </TableRow>
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                >
+            <TableRow style="@style/SheetTable.Row">
 
                 <TextView android:id="@+id/tv_sheet_whereBedroom"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
+                    style="@style/SheetTable.Header"
                     android:text="@string/placeBedroom"
                     />
 
                 <include android:id="@+id/skarlet"
                     layout="@layout/layout_cells"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     />
 
             </TableRow>
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                >
+            <TableRow style="@style/SheetTable.Row">
 
                 <TextView android:id="@+id/tv_sheet_whereLivingroom"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
+                    style="@style/SheetTable.Header"
                     android:text="@string/placeLivingroom"
                     />
 
                 <include android:id="@+id/skarlet"
                     layout="@layout/layout_cells"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     />
 
             </TableRow>
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                >
+            <TableRow style="@style/SheetTable.Row">
 
                 <TextView android:id="@+id/tv_sheet_whereKitchen"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
+                    style="@style/SheetTable.Header"
                     android:text="@string/placeKitchen"
                     />
 
                 <include android:id="@+id/skarlet"
                     layout="@layout/layout_cells"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     />
 
             </TableRow>
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                >
+            <TableRow style="@style/SheetTable.Row">
 
                 <TextView android:id="@+id/tv_sheet_whereWinterGarden"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
+                    style="@style/SheetTable.Header"
                     android:text="@string/placeWinterGarden"
                     />
 
                 <include android:id="@+id/skarlet"
                     layout="@layout/layout_cells"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     />
 
             </TableRow>

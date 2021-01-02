@@ -1,6 +1,9 @@
 <resources>
-    <string name="who">Кто?</string>
     <string name="app_name">SeekSheet</string>
+
+    <string name="sheetPlayers">Игроки</string>
+
+    <string name="who">Кто?</string>
     <string name="personGreen">Грин</string>
     <string name="personMustard">Мастард</string>
     <string name="personPeacock">Пикок</string>
