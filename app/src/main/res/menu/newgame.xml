@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/omi_newGame_clearSheet"
+        android:title="@string/sheet_clear"
+        android:icon="@drawable/ic_table"
+        app:showAsAction="collapseActionView"
+        />
+</menu>

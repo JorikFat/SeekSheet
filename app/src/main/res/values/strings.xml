@@ -29,4 +29,10 @@
     <string name="placeCabinet">Кабинет</string>
 
     <string name="selectIcon_title">Выберите иконку</string>
+
+    <string name="sheet_clear">Очистить таблицу</string>
+    <string name="yes">Да</string>
+    <string name="cancel">Отмена</string>
+    <string name="sure">Уверены?</string>
+    <string name="sheet_clearTableWarning">После очищения таблицы данные будут удалены. Отменить это действие невозможно.</string>
 </resources>

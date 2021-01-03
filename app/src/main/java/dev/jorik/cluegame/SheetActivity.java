@@ -1,10 +1,14 @@
 package dev.jorik.cluegame;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.Editable;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -43,13 +47,35 @@ public class SheetActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sheet);
         config = new Config(PreferenceManager.getDefaultSharedPreferences(this));
         sheetState = config.getSheet();
+
+        player1name.addTextChangedListener((Platform.TextListener) text -> sheetState.getPlayers()[0].setPlayerName(text.toString()));
+        player2name.addTextChangedListener((Platform.TextListener) text -> sheetState.getPlayers()[1].setPlayerName(text.toString()));
+        player3name.addTextChangedListener((Platform.TextListener) text -> sheetState.getPlayers()[2].setPlayerName(text.toString()));
+        player4name.addTextChangedListener((Platform.TextListener) text -> sheetState.getPlayers()[3].setPlayerName(text.toString()));
+        player5name.addTextChangedListener((Platform.TextListener) text -> sheetState.getPlayers()[4].setPlayerName(text.toString()));
+
         initPlayRows();
-        initNamePlayers();
-        for(int r=0; r<sheetRows.size(); r++){
-            for(int c=0; c<6; c++){
-                int[] state = c == 0 ? sheetState.getState() : sheetState.getPlayers()[c-1].getState();
-                setCellIcon(((ImageView) sheetRows.get(r).getChildAt(c+1)), state[r]);
-            }
+        setPlayersName();
+        setTableIcons();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.newgame, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.omi_newGame_clearSheet){
+            new ConfirmDialog(this, R.string.sure, R.string.sheet_clearTableWarning, () -> {
+                sheetState = new SheetState();
+                setTableIcons();
+                setPlayersName();
+            }).show();
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
         }
     }
 
@@ -75,10 +101,6 @@ public class SheetActivity extends AppCompatActivity {
         }).show();
     }
 
-    private void setCellIcon(ImageView cell, int valueIndex){
-        setCellIcon(cell, CellValue.values()[valueIndex]);
-    }
-
     private void setCellIcon(ImageView cell, CellValue value){
         int iconId = 0;
         switch (value){
@@ -89,6 +111,17 @@ public class SheetActivity extends AppCompatActivity {
             case QUESTION: iconId = R.drawable.ic_question; break;
         }
         cell.setImageResource(iconId);
+    }
+
+    private void setTableIcons(){
+        for(int r=0; r<sheetRows.size(); r++){
+            for(int c=0; c<6; c++){
+                int[] state = c == 0 ? sheetState.getState() : sheetState.getPlayers()[c-1].getState();
+                ImageView cell = (ImageView) sheetRows.get(r).getChildAt(c + 1);
+                CellValue value = CellValue.values()[state[r]];
+                setCellIcon(cell, value);
+            }
+        }
     }
 
     private void initPlayRows(){
@@ -115,20 +148,11 @@ public class SheetActivity extends AppCompatActivity {
         sheetRows.add(findViewById(R.id.TR_sheet_placeCabinet));
     }
 
-    private void initNamePlayers(){
+    private void setPlayersName(){
         player1name.setText(sheetState.getPlayers()[0].getPlayerName());
-        player1name.addTextChangedListener((Platform.TextListener) text -> sheetState.getPlayers()[0].setPlayerName(text.toString()));
-
         player2name.setText(sheetState.getPlayers()[1].getPlayerName());
-        player2name.addTextChangedListener((Platform.TextListener) text -> sheetState.getPlayers()[1].setPlayerName(text.toString()));
-
         player3name.setText(sheetState.getPlayers()[2].getPlayerName());
-        player3name.addTextChangedListener((Platform.TextListener) text -> sheetState.getPlayers()[2].setPlayerName(text.toString()));
-
         player4name.setText(sheetState.getPlayers()[3].getPlayerName());
-        player4name.addTextChangedListener((Platform.TextListener) text -> sheetState.getPlayers()[3].setPlayerName(text.toString()));
-
         player5name.setText(sheetState.getPlayers()[4].getPlayerName());
-        player5name.addTextChangedListener((Platform.TextListener) text -> sheetState.getPlayers()[4].setPlayerName(text.toString()));
     }
 }

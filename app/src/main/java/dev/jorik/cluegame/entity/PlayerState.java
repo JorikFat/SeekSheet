@@ -4,6 +4,10 @@ public class PlayerState {
     private String playerName;
     private int[] state;
 
+    public PlayerState(){
+        state = new int[19];
+    }
+
     public PlayerState(String playerName, int[] state) {
         this.playerName = playerName;
         this.state = state;

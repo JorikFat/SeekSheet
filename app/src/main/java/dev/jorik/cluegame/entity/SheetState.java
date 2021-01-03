@@ -1,8 +1,16 @@
 package dev.jorik.cluegame.entity;
 
+import java.util.Arrays;
+
 public class SheetState {
     private int[] state;
     private PlayerState[] players;
+
+    public SheetState(){
+        this.state = new int[19];
+        players = new PlayerState[5];
+        Arrays.fill(this.players, new PlayerState());
+    }
 
     public SheetState(int[] state, PlayerState[] players) {
         this.state = state;
