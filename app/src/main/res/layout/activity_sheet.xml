@@ -37,15 +37,20 @@
                     android:layout_weight="1"
                     />
 
-                <EditText style="@style/SheetTable.PlayerCell" />
+                <EditText android:id="@+id/et_sheet_player1name"
+                    style="@style/SheetTable.PlayerCell" />
 
-                <EditText style="@style/SheetTable.PlayerCell" />
+                <EditText android:id="@+id/et_sheet_player2name"
+                    style="@style/SheetTable.PlayerCell" />
 
-                <EditText style="@style/SheetTable.PlayerCell" />
+                <EditText android:id="@+id/et_sheet_player3name"
+                    style="@style/SheetTable.PlayerCell" />
 
-                <EditText style="@style/SheetTable.PlayerCell" />
+                <EditText android:id="@+id/et_sheet_player4name"
+                    style="@style/SheetTable.PlayerCell" />
 
-                <EditText style="@style/SheetTable.PlayerCell" />
+                <EditText android:id="@+id/et_sheet_player5name"
+                    style="@style/SheetTable.PlayerCell" />
             </TableRow>
 
             <!--Кто-->
@@ -58,7 +63,7 @@
 
             </TableRow>
 
-            <TableRow android:id="@+id/tr_sheet_personGreen"
+            <TableRow android:id="@+id/TR_sheet_personGreen"
                 style="@style/SheetTable.Row">
 
                 <TextView android:id="@+id/tv_sheet_personGreen"
@@ -69,7 +74,8 @@
                 <include layout="@layout/layout_cells" />
             </TableRow>
 
-            <TableRow style="@style/SheetTable.Row">
+            <TableRow android:id="@+id/TR_sheet_personMustard"
+                style="@style/SheetTable.Row">
 
                 <TextView android:id="@+id/tv_sheet_personMustard"
                     style="@style/SheetTable.Header"
@@ -80,7 +86,8 @@
 
             </TableRow>
 
-            <TableRow style="@style/SheetTable.Row">
+            <TableRow android:id="@+id/TR_sheet_personPeacock"
+                style="@style/SheetTable.Row">
 
                 <TextView android:id="@+id/tv_sheet_personPeacoсk"
                     style="@style/SheetTable.Header"
@@ -91,7 +98,8 @@
 
             </TableRow>
 
-            <TableRow style="@style/SheetTable.Row">
+            <TableRow android:id="@+id/TR_sheet_personPlum"
+                style="@style/SheetTable.Row">
 
                 <TextView android:id="@+id/tv_sheet_personPlum"
                     style="@style/SheetTable.Header"
@@ -102,7 +110,8 @@
 
             </TableRow>
 
-            <TableRow style="@style/SheetTable.Row">
+            <TableRow android:id="@+id/TR_sheet_personScarlett"
+                style="@style/SheetTable.Row">
 
                 <TextView android:id="@+id/tv_sheet_personScarlett"
                     style="@style/SheetTable.Header"
@@ -123,7 +132,8 @@
 
             </TableRow>
 
-            <TableRow style="@style/SheetTable.Row">
+            <TableRow android:id="@+id/TR_sheet_toolCandleStick"
+                style="@style/SheetTable.Row">
 
                 <TextView
                     style="@style/SheetTable.Header"
@@ -134,7 +144,8 @@
 
             </TableRow>
 
-            <TableRow style="@style/SheetTable.Row">
+            <TableRow android:id="@+id/TR_sheet_toolDagger"
+                style="@style/SheetTable.Row">
 
                 <TextView
                     style="@style/SheetTable.Header"
@@ -145,7 +156,8 @@
 
             </TableRow>
 
-            <TableRow style="@style/SheetTable.Row">
+            <TableRow android:id="@+id/TR_sheet_toolRevolver"
+                style="@style/SheetTable.Row">
 
                 <TextView
                     style="@style/SheetTable.Header"
@@ -156,7 +168,8 @@
 
             </TableRow>
 
-            <TableRow style="@style/SheetTable.Row">
+            <TableRow android:id="@+id/TR_sheet_toolRope"
+                style="@style/SheetTable.Row">
 
                 <TextView
                     style="@style/SheetTable.Header"
@@ -167,7 +180,8 @@
 
             </TableRow>
 
-            <TableRow style="@style/SheetTable.Row">
+            <TableRow android:id="@+id/TR_sheet_toolWrench"
+                style="@style/SheetTable.Row">
 
                 <TextView
                     style="@style/SheetTable.Header"
@@ -188,7 +202,8 @@
 
             </TableRow>
 
-            <TableRow style="@style/SheetTable.Row">
+            <TableRow android:id="@+id/TR_sheet_placeBallroom"
+                style="@style/SheetTable.Row">
 
                 <TextView
                     style="@style/SheetTable.Header"
@@ -199,7 +214,8 @@
 
             </TableRow>
 
-            <TableRow style="@style/SheetTable.Row">
+            <TableRow android:id="@+id/TR_sheet_placeBilliard"
+                style="@style/SheetTable.Row">
 
                 <TextView
                     style="@style/SheetTable.Header"
@@ -210,7 +226,8 @@
 
             </TableRow>
 
-            <TableRow style="@style/SheetTable.Row">
+            <TableRow android:id="@+id/TR_sheet_placeWinterGarder"
+                style="@style/SheetTable.Row">
 
                 <TextView
                     style="@style/SheetTable.Header"
@@ -221,7 +238,8 @@
 
             </TableRow>
 
-            <TableRow style="@style/SheetTable.Row">
+            <TableRow android:id="@+id/TR_sheet_placeDining"
+                style="@style/SheetTable.Row">
 
                 <TextView
                     style="@style/SheetTable.Header"
@@ -232,7 +250,8 @@
 
             </TableRow>
 
-            <TableRow style="@style/SheetTable.Row">
+            <TableRow  android:id="@+id/TR_sheet_placeBath"
+                style="@style/SheetTable.Row">
 
                 <TextView
                     style="@style/SheetTable.Header"
@@ -243,7 +262,8 @@
 
             </TableRow>
 
-            <TableRow style="@style/SheetTable.Row">
+            <TableRow  android:id="@+id/TR_sheet_placeKitchen"
+                style="@style/SheetTable.Row">
 
                 <TextView
                     style="@style/SheetTable.Header"
@@ -254,7 +274,8 @@
 
             </TableRow>
 
-            <TableRow style="@style/SheetTable.Row">
+            <TableRow android:id="@+id/TR_sheet_placeLibrary"
+                style="@style/SheetTable.Row">
 
                 <TextView
                     style="@style/SheetTable.Header"
@@ -265,7 +286,8 @@
 
             </TableRow>
 
-            <TableRow style="@style/SheetTable.Row">
+            <TableRow android:id="@+id/TR_sheet_placeLivingroom"
+                style="@style/SheetTable.Row">
 
                 <TextView
                     style="@style/SheetTable.Header"
@@ -276,7 +298,8 @@
 
             </TableRow>
 
-            <TableRow style="@style/SheetTable.Row">
+            <TableRow android:id="@+id/TR_sheet_placeCabinet"
+                style="@style/SheetTable.Row">
 
                 <TextView
                     style="@style/SheetTable.Header"
