@@ -35,4 +35,6 @@
     <string name="cancel">Отмена</string>
     <string name="sure">Уверены?</string>
     <string name="sheet_clearTableWarning">После очищения таблицы данные будут удалены. Отменить это действие невозможно.</string>
+    <string name="sheet_initPlayersNames">Введите имена игроков</string>
+    <string name="start">Начать!</string>
 </resources>

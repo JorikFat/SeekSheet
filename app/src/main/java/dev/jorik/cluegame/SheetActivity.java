@@ -1,21 +1,18 @@
 package dev.jorik.cluegame;
 
+import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TableRow;
+import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.text.Editable;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TableRow;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import dev.jorik.cluegame.entity.SheetState;
@@ -24,21 +21,21 @@ import dev.jorik.cluegame.utils.Platform;
 public class SheetActivity extends AppCompatActivity {
     private Config config;
     private SheetState sheetState;
-    private EditText player1name;
-    private EditText player2name;
-    private EditText player3name;
-    private EditText player4name;
-    private EditText player5name;
+    private TextView player1name;
+    private TextView player2name;
+    private TextView player3name;
+    private TextView player4name;
+    private TextView player5name;
     private List<TableRow> sheetRows = new ArrayList<>();
 
     @Override
     public void setContentView(int layoutResID) {
         super.setContentView(layoutResID);
-        player1name = findViewById(R.id.et_sheet_player1name);
-        player2name = findViewById(R.id.et_sheet_player2name);
-        player3name = findViewById(R.id.et_sheet_player3name);
-        player4name = findViewById(R.id.et_sheet_player4name);
-        player5name = findViewById(R.id.et_sheet_player5name);
+        player1name = findViewById(R.id.tv_sheet_player1name);
+        player2name = findViewById(R.id.tv_sheet_player2name);
+        player3name = findViewById(R.id.tv_sheet_player3name);
+        player4name = findViewById(R.id.tv_sheet_player4name);
+        player5name = findViewById(R.id.tv_sheet_player5name);
     }
 
     @Override
@@ -46,6 +43,8 @@ public class SheetActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sheet);
         config = new Config(PreferenceManager.getDefaultSharedPreferences(this));
+
+        if (config.isNewGame()) initPlayers();
         sheetState = config.getSheet();
 
         player1name.addTextChangedListener((Platform.TextListener) text -> sheetState.getPlayers()[0].setPlayerName(text.toString()));
@@ -72,6 +71,8 @@ public class SheetActivity extends AppCompatActivity {
                 sheetState = new SheetState();
                 setTableIcons();
                 setPlayersName();
+                config.setNewGame(true);
+                initPlayers();
             }).show();
             return true;
         } else {
@@ -154,5 +155,22 @@ public class SheetActivity extends AppCompatActivity {
         player3name.setText(sheetState.getPlayers()[2].getPlayerName());
         player4name.setText(sheetState.getPlayers()[3].getPlayerName());
         player5name.setText(sheetState.getPlayers()[4].getPlayerName());
+    }
+
+    private void initPlayers(){
+        new NamesDialog(this, names -> {
+            for(int i=0; i<names.length; i++){
+                sheetState.getPlayers()[i].setPlayerName(getInitials(names[i]));
+            }
+            config.setNewGame(false);
+            setPlayersName();
+        }).show();
+    }
+
+    private String getInitials(String fullName){
+        StringBuilder builder = new StringBuilder();
+        for (String part : fullName.split(" "))
+            builder.append(part.substring(0,1));
+        return builder.toString();
     }
 }

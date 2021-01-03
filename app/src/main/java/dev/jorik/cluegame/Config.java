@@ -9,6 +9,7 @@ public class Config {
     private static final String PLAYER_STATE = "player_state";
     private static final String PLAYER_NAME_PATTERN = "player%d";
     private static final String PLAYER_STATE_PATTERN = "player_state%d";
+    private static final String NEW_GAME = "new_game";
     private SharedPreferences preferences;
 
     public Config(SharedPreferences preferences) {
@@ -28,6 +29,14 @@ public class Config {
         PlayerState[] playerStates = new PlayerState[5];
         for (int i=0; i<5; i++) playerStates[i] = getPlayer(i);
         return new SheetState(state, playerStates);
+    }
+
+    public boolean isNewGame(){
+        return preferences.getBoolean(NEW_GAME, true);
+    }
+
+    public void setNewGame(boolean newGame){
+        preferences.edit().putBoolean(NEW_GAME, newGame).apply();
     }
 
     private SharedPreferences.Editor putPlayer(SharedPreferences.Editor editor, int index, PlayerState playerState){
