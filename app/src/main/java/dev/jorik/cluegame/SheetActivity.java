@@ -16,9 +16,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dev.jorik.cluegame.entity.SheetState;
+import dev.jorik.cluegame.modals.NamesDialog;
+import dev.jorik.cluegame.modals.SelectionPopup;
 import dev.jorik.cluegame.utils.Platform;
 
 public class SheetActivity extends AppCompatActivity {
+    private SelectionPopup selecting;
     private Config config;
     private SheetState sheetState;
     private TextView player1name;
@@ -43,6 +46,16 @@ public class SheetActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sheet);
         config = new Config(PreferenceManager.getDefaultSharedPreferences(this));
+        selecting = new SelectionPopup(this, (cell, value) -> {
+            setCellIcon(cell, value);
+
+            TableRow row = ((TableRow) cell.getParent());
+            int rowIndex = sheetRows.indexOf(row);
+            int columnIndex = row.indexOfChild(cell)-1;
+
+            if (columnIndex == 0) sheetState.setItemState(rowIndex, value.index());
+            else sheetState.getPlayers()[columnIndex-1].setItemState(rowIndex, value.index());
+        });
 
         if (config.isNewGame()) initPlayers();
         sheetState = config.getSheet();
@@ -88,18 +101,7 @@ public class SheetActivity extends AppCompatActivity {
 
     public void onCellClick(View view){
         ImageView cell = ((ImageView) view);
-        new SelectIconDialog(SheetActivity.this, value -> {
-            setCellIcon(cell, value);
-
-            TableRow row = ((TableRow) cell.getParent());
-            int rowIndex = sheetRows.indexOf(row);
-            int columnIndex = row.indexOfChild(cell)-1;
-            if (columnIndex == 0){//player cell
-                sheetState.setItemState(rowIndex, value.index());
-            } else {//opponent cell
-                sheetState.getPlayers()[columnIndex-1].setItemState(rowIndex, value.index());
-            }
-        }).show();
+        selecting.show(cell);
     }
 
     private void setCellIcon(ImageView cell, CellValue value){

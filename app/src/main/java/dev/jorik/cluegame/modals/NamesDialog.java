@@ -1,4 +1,4 @@
-package dev.jorik.cluegame;
+package dev.jorik.cluegame.modals;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -9,12 +9,14 @@ import android.widget.EditText;
 import java.util.ArrayList;
 import java.util.List;
 
+import dev.jorik.cluegame.R;
+
 import static dev.jorik.cluegame.utils.Platform.getString;
 
 public class NamesDialog extends AlertDialog {
     private EditText[] nameFields = new EditText[5];
 
-    protected NamesDialog(Context context, CreateCallback callback) {
+    public NamesDialog(Context context, CreateCallback callback) {
         super(context);
         View view = LayoutInflater.from(context).inflate(R.layout.dialog_playersname, null, false);
         nameFields[0] = view.findViewById(R.id.et_playersName_name1);
