@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bg_selection"
+    android:padding="4dp"
+    >
+
+    <TableLayout style="@style/Selection.Container">
+
+        <TableRow style="@style/Selection.Container"
+            android:gravity="center"
+            >
+
+            <View android:id="@+id/view_selector_black"
+                style="@style/Selection.Item"
+                android:background="@color/black"
+                />
+
+            <View android:id="@+id/view_selector_red"
+                style="@style/Selection.Item"
+                android:background="@color/red"
+                />
+
+            <View android:id="@+id/view_selector_green"
+                style="@style/Selection.Item"
+                android:background="@color/green"
+                />
+
+            <View android:id="@+id/view_selector_blue"
+                style="@style/Selection.Item"
+                android:background="@color/blue"
+                />
+
+        </TableRow>
+
+        <TableRow style="@style/Selection.Container"
+            android:gravity="center"
+            >
+
+            <View android:id="@+id/view_selector_gray"
+                style="@style/Selection.Item"
+                android:background="@color/gray"
+                />
+
+            <View android:id="@+id/view_selector_cyan"
+                style="@style/Selection.Item"
+                android:background="@color/cyan"
+                />
+
+            <View android:id="@+id/view_selector_magenta"
+                style="@style/Selection.Item"
+                android:background="@color/magenta"
+                />
+
+            <View android:id="@+id/view_selector_yellow"
+                style="@style/Selection.Item"
+                android:background="@color/yellow"
+                />
+
+        </TableRow>
+
+    </TableLayout>
+
+    <LinearLayout
+        style="@style/Selection.Container"
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
+
+        <ImageView android:id="@+id/iv_select_clear"
+            style="@style/Selection.Item"
+            android:padding="16dp"
+            app:srcCompat="@drawable/ic_empty"
+            />
+
+        <ImageView android:id="@+id/iv_select_check"
+            style="@style/Selection.Item"
+            app:srcCompat="@drawable/ic_check"
+            />
+
+        <ImageView android:id="@+id/iv_select_cross"
+            style="@style/Selection.Item"
+            app:srcCompat="@drawable/ic_cross"
+            />
+
+        <ImageView android:id="@+id/iv_select_exclamation"
+            style="@style/Selection.Item"
+            app:srcCompat="@drawable/ic_exclamation"
+            />
+
+        <ImageView android:id="@+id/iv_select_question"
+            style="@style/Selection.Item"
+            app:srcCompat="@drawable/ic_question"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

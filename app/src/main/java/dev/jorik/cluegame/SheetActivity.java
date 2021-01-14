@@ -15,8 +15,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.List;
 
+import dev.jorik.cluegame.entity.Color;
 import dev.jorik.cluegame.entity.SheetState;
 import dev.jorik.cluegame.modals.NamesDialog;
+import dev.jorik.cluegame.modals.SelectionCallback;
 import dev.jorik.cluegame.modals.SelectionPopup;
 import dev.jorik.cluegame.utils.Platform;
 
@@ -46,15 +48,23 @@ public class SheetActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sheet);
         config = new Config(PreferenceManager.getDefaultSharedPreferences(this));
-        selecting = new SelectionPopup(this, (cell, value) -> {
-            setCellIcon(cell, value);
+        selecting = new SelectionPopup(this, new SelectionCallback() {
+            @Override
+            public void selectIcon(ImageView cell, CellValue value) {
+                setCellIcon(cell, value);
 
-            TableRow row = ((TableRow) cell.getParent());
-            int rowIndex = sheetRows.indexOf(row);
-            int columnIndex = row.indexOfChild(cell)-1;
+                TableRow row = ((TableRow) cell.getParent());
+                int rowIndex = sheetRows.indexOf(row);
+                int columnIndex = row.indexOfChild(cell)-1;
 
-            if (columnIndex == 0) sheetState.setItemState(rowIndex, value.index());
-            else sheetState.getPlayers()[columnIndex-1].setItemState(rowIndex, value.index());
+                if (columnIndex == 0) sheetState.setItemState(rowIndex, value.index());
+                else sheetState.getPlayers()[columnIndex-1].setItemState(rowIndex, value.index());
+            }
+
+            @Override
+            public void selectColor(Color color) {
+
+            }
         });
 
         if (config.isNewGame()) initPlayers();
