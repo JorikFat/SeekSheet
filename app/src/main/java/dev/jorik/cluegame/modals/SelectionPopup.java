@@ -7,14 +7,15 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 
-import androidx.core.content.ContextCompat;
 import androidx.core.widget.ImageViewCompat;
 
-import dev.jorik.cluegame.CellValue;
+import dev.jorik.cluegame.entity.Cell;
+import dev.jorik.cluegame.entity.Value;
 import dev.jorik.cluegame.R;
 import dev.jorik.cluegame.entity.Color;
 
 import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
+import static dev.jorik.cluegame.utils.View.getIntColor;
 
 public class SelectionPopup {
     private Context context;
@@ -30,9 +31,8 @@ public class SelectionPopup {
         this.context = context;
         this.view = LayoutInflater.from(context).inflate(R.layout.popup_selecticon, null);
         ImageView clear = view.findViewById(R.id.iv_select_clear);
-//        icons[0] = clear;
         clear.setOnClickListener(v -> {
-            callback.selectIcon(cell, CellValue.EMPTY);
+            callback.selectIcon(cell, new Cell(Value.EMPTY, color));
             cell = null;
             window.dismiss();
         });
@@ -40,7 +40,7 @@ public class SelectionPopup {
         ImageView check = view.findViewById(R.id.iv_select_check);
         icons[0] = check;
         check.setOnClickListener(v -> {
-                    callback.selectIcon(cell, CellValue.CHECK);
+                    callback.selectIcon(cell, new Cell(Value.CHECK, color));
                     cell = null;
                     window.dismiss();
                 });
@@ -48,7 +48,7 @@ public class SelectionPopup {
         ImageView cross = view.findViewById(R.id.iv_select_cross);
         icons[1] = cross;
         cross.setOnClickListener(v -> {
-                    callback.selectIcon(cell, CellValue.CROSS);
+                    callback.selectIcon(cell, new Cell(Value.CROSS, color));
                     cell = null;
                     window.dismiss();
                 });
@@ -56,7 +56,7 @@ public class SelectionPopup {
         ImageView exclamation = view.findViewById(R.id.iv_select_exclamation);
         icons[2] = exclamation;
         exclamation.setOnClickListener(v -> {
-            callback.selectIcon(cell, CellValue.EXCLAMATION);
+            callback.selectIcon(cell, new Cell(Value.EXCLAMATION, color));
             cell = null;
             window.dismiss();
         });
@@ -64,7 +64,7 @@ public class SelectionPopup {
         ImageView question = view.findViewById(R.id.iv_select_question);
         icons[3] = question;
         question.setOnClickListener(v -> {
-            callback.selectIcon(cell, CellValue.QUESTION);
+            callback.selectIcon(cell, new Cell(Value.QUESTION, color));
             cell = null;
             window.dismiss();
         });
@@ -89,21 +89,9 @@ public class SelectionPopup {
     }
 
     private void setColor(Color color){
-        int colorId;
-        switch (color){
-            case RED: colorId = R.color.red; break;
-            case GREEN: colorId = R.color.green; break;
-            case BLUE: colorId = R.color.blue; break;
-            case CYAN: colorId = R.color.cyan; break;
-            case MAGENTA: colorId = R.color.magenta; break;
-            case YELLOW: colorId = R.color.yellow; break;
-            case GRAY: colorId = R.color.gray; break;
-            default: colorId = R.color.black; break;
-        }
-        int colorInt = ContextCompat.getColor(context, colorId);
-
+        this.color = color;
         for(ImageView image :icons){
-            ImageViewCompat.setImageTintList(image, ColorStateList.valueOf(colorInt));
+            ImageViewCompat.setImageTintList(image, ColorStateList.valueOf(getIntColor(context, color)));
         }
     }
 }

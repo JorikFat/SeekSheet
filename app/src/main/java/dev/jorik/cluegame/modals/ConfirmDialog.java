@@ -1,7 +1,9 @@
-package dev.jorik.cluegame;
+package dev.jorik.cluegame.modals;
 
 import android.app.AlertDialog;
 import android.content.Context;
+
+import dev.jorik.cluegame.R;
 
 public class ConfirmDialog extends AlertDialog {
 
@@ -17,7 +19,7 @@ public class ConfirmDialog extends AlertDialog {
         setButton(BUTTON_NEGATIVE, context.getString(R.string.cancel), (d, i) -> d.cancel());
     }
 
-    interface ConfirmCallback{
+    public interface ConfirmCallback{
         void onConfirm();
     }
 }

@@ -2,13 +2,16 @@ package dev.jorik.cluegame;
 
 import android.content.SharedPreferences;
 
-import dev.jorik.cluegame.entity.PlayerState;
-import dev.jorik.cluegame.entity.SheetState;
+import dev.jorik.cluegame.entity.Cell;
+import dev.jorik.cluegame.entity.Color;
+import dev.jorik.cluegame.entity.PlayerCells;
+import dev.jorik.cluegame.entity.SheetCells;
+import dev.jorik.cluegame.entity.Value;
 
 public class Config {
-    private static final String PLAYER_STATE = "player_state";
+    private static final String PLAYER_CELLS = "player_cells";
     private static final String PLAYER_NAME_PATTERN = "player%d";
-    private static final String PLAYER_STATE_PATTERN = "player_state%d";
+    private static final String PLAYER_CELLS_PATTERN = "player_cells%d";
     private static final String NEW_GAME = "new_game";
     private SharedPreferences preferences;
 
@@ -16,19 +19,20 @@ public class Config {
         this.preferences = preferences;
     }
 
-    public void saveSheet(SheetState sheetState){
+    public void saveSheet(SheetCells sheetCells){
         SharedPreferences.Editor editor = preferences.edit()
-                .putString(PLAYER_STATE, serializeArray(sheetState.getState()));
+                .putString(PLAYER_CELLS, serializeArray(sheetCells.getCells()));
 
-        for (int i=0; i<5; i++) putPlayer(editor, i, sheetState.getPlayers()[i]);
+        for (int i=0; i<5; i++) putPlayer(editor, i, sheetCells.getPlayers()[i]);
         editor.apply();
     }
 
-    public SheetState getSheet(){
-        int[] state = deserializeArray(preferences.getString(PLAYER_STATE, ""));
-        PlayerState[] playerStates = new PlayerState[5];
-        for (int i=0; i<5; i++) playerStates[i] = getPlayer(i);
-        return new SheetState(state, playerStates);
+    public SheetCells getSheet(){
+        String codedCells = preferences.getString(PLAYER_CELLS, "");
+        Cell[] cells = codedCells.isEmpty() ? newColumn() : deserializeArray(codedCells.split("_"));
+        PlayerCells[] playerCells = new PlayerCells[5];
+        for (int i=0; i<5; i++) playerCells[i] = getPlayer(i);
+        return new SheetCells(cells, playerCells);
     }
 
     public boolean isNewGame(){
@@ -39,28 +43,47 @@ public class Config {
         preferences.edit().putBoolean(NEW_GAME, newGame).apply();
     }
 
-    private SharedPreferences.Editor putPlayer(SharedPreferences.Editor editor, int index, PlayerState playerState){
-        return editor.putString(String.format(PLAYER_NAME_PATTERN, index), playerState.getPlayerName())
-                .putString(String.format(PLAYER_STATE_PATTERN, index), serializeArray(playerState.getState()));
+    private SharedPreferences.Editor putPlayer(SharedPreferences.Editor editor, int index, PlayerCells playerCells){
+        return editor.putString(String.format(PLAYER_NAME_PATTERN, index), playerCells.getPlayerName())
+                .putString(String.format(PLAYER_CELLS_PATTERN, index), serializeArray(playerCells.getCells()));
     }
 
-    private PlayerState getPlayer(int index){
+    private PlayerCells getPlayer(int index){
         String name = preferences.getString(String.format(PLAYER_NAME_PATTERN, index), "");
-        int[] state = deserializeArray(preferences.getString(String.format(PLAYER_STATE_PATTERN, index), ""));
-        return new PlayerState(name, state);
+        String codedCells = preferences.getString(String.format(PLAYER_CELLS_PATTERN, index), "");
+        Cell[] cells = codedCells.isEmpty() ? newColumn() : deserializeArray(codedCells.split("_"));
+        return new PlayerCells(name, cells);
     }
 
-    private String serializeArray(int[] state){
-        StringBuilder builder = new StringBuilder();
-        for (int i : state) builder.append(i);
+    private String serializeArray(Cell[] cells){
+        StringBuilder builder = new StringBuilder(serialize(cells[0]));
+        for (int i=1; i<cells.length; i++) builder.append('_').append(serialize(cells[i]));
         return builder.toString();
     }
 
-    private int[] deserializeArray(String serial){
-        int[] state = new int[19];
-        for (int i = 0; i < serial.length(); i++) {
-            state[i] = Character.getNumericValue(serial.charAt(i));
+    private Cell[] deserializeArray(String[] serial){
+        Cell[] cells = new Cell[19];
+        for (int i=0; i<serial.length; i++){
+            cells[i] = deserialize(serial[i]);
         }
-        return state;
+        return cells;
+    }
+
+    private String serialize(Cell cell){
+        int value = cell.getValue().index();
+        int color = cell.getColor().index();
+        return String.valueOf(value) + String.valueOf(color);
+    }
+
+    private Cell deserialize(String code){
+        Value value = Value.values()[Character.getNumericValue(code.charAt(0))];
+        Color color = Color.values()[Character.getNumericValue(code.charAt(1))];
+        return new Cell(value, color);
+    }
+
+    private Cell[] newColumn(){ //todo генерализировать
+        Cell[] cells = new Cell[19];
+        for (int i=0; i<19; i++) cells[i] = new Cell();
+        return cells;
     }
 }

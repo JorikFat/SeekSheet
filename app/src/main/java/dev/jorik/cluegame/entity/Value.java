@@ -2,10 +2,10 @@ package dev.jorik.cluegame.entity;
 
 import java.util.Arrays;
 
-public enum Color implements Indexed { BLACK, RED, GREEN, BLUE, GRAY, CYAN, MAGENTA, YELLOW;
+public enum Value implements Indexed{ EMPTY, CHECK, CROSS, EXCLAMATION, QUESTION;
 
     @Override
-    public int index() {
+    public int index(){
         return Arrays.asList(values()).indexOf(this);
     }
 }
