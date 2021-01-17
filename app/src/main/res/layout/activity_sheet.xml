@@ -29,28 +29,39 @@
                     android:textColor="@android:color/white"
                     android:textSize="16sp"
                     android:text="@string/sheetPlayers"
+                    android:layout_weight="0.2"
                     />
 
                 <Space
                     android:layout_height="wrap_content"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
+                    android:layout_weight="0.1"
                     />
 
-                <TextView android:id="@+id/tv_sheet_player1name"
-                    style="@style/SheetTable.PlayerCell" />
+                <LinearLayout android:id="@+id/tv_sheet_playersName"
+                    style="@style/SheetTable.PlayersRow"
+                    >
 
-                <TextView android:id="@+id/tv_sheet_player2name"
-                    style="@style/SheetTable.PlayerCell" />
+                    <TextView android:id="@+id/tv_sheet_player1name"
+                        style="@style/SheetTable.PlayerCell"
+                        />
 
-                <TextView android:id="@+id/tv_sheet_player3name"
-                    style="@style/SheetTable.PlayerCell" />
+                    <TextView android:id="@+id/tv_sheet_player2name"
+                        style="@style/SheetTable.PlayerCell"
+                        />
 
-                <TextView android:id="@+id/tv_sheet_player4name"
-                    style="@style/SheetTable.PlayerCell" />
+                    <TextView android:id="@+id/tv_sheet_player3name"
+                        style="@style/SheetTable.PlayerCell"
+                        />
 
-                <TextView android:id="@+id/tv_sheet_player5name"
-                    style="@style/SheetTable.PlayerCell" />
+                    <TextView android:id="@+id/tv_sheet_player4name"
+                        style="@style/SheetTable.PlayerCell"
+                        />
+
+                    <TextView android:id="@+id/tv_sheet_player5name"
+                        style="@style/SheetTable.PlayerCell"
+                        />
+                </LinearLayout>
             </TableRow>
 
             <!--Кто-->
@@ -60,6 +71,8 @@
                     style="@style/SheetTable.Title"
                     android:text="@string/who"
                     />
+
+                <Space android:layout_weight="0.6"/>
 
             </TableRow>
 
@@ -130,6 +143,8 @@
                     style="@style/SheetTable.Title"
                     android:text="@string/which" />
 
+                <Space android:layout_weight="0.6"/>
+
             </TableRow>
 
             <TableRow android:id="@+id/TR_sheet_toolCandleStick"
@@ -199,6 +214,8 @@
                     style="@style/SheetTable.Title"
                     android:text="@string/where"
                     />
+
+                <Space android:layout_weight="0.6"/>
 
             </TableRow>
 

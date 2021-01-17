@@ -3,25 +3,34 @@
 
     <ImageView android:id="@+id/iv_sheet_player"
         style="@style/SheetTable.FillCell"
+        android:layout_weight="0.1"
         />
 
-    <ImageView android:id="@+id/iv_sheet_player1"
-        style="@style/SheetTable.FillCell"
-        />
+    <LinearLayout style="@style/SheetTable.PlayersRow">
 
-    <ImageView android:id="@+id/iv_sheet_player2"
-        style="@style/SheetTable.FillCell"
-        />
+        <ImageView android:id="@+id/iv_sheet_player1"
+            style="@style/SheetTable.FillCell"
+            android:layout_weight="1"
+            />
 
-    <ImageView android:id="@+id/iv_sheet_player3"
-        style="@style/SheetTable.FillCell"
-        />
+        <ImageView android:id="@+id/iv_sheet_player2"
+            style="@style/SheetTable.FillCell"
+            android:layout_weight="1"
+            />
 
-    <ImageView android:id="@+id/iv_sheet_player4"
-        style="@style/SheetTable.FillCell"
-        />
+        <ImageView android:id="@+id/iv_sheet_player3"
+            style="@style/SheetTable.FillCell"
+            android:layout_weight="1"
+            />
 
-    <ImageView android:id="@+id/iv_sheet_player5"
-        style="@style/SheetTable.FillCell"
-        />
+        <ImageView android:id="@+id/iv_sheet_player4"
+            style="@style/SheetTable.FillCell"
+            android:layout_weight="1"
+            />
+
+        <ImageView android:id="@+id/iv_sheet_player5"
+            style="@style/SheetTable.FillCell"
+            android:layout_weight="1"
+            />
+    </LinearLayout>
 </merge>
