@@ -4,6 +4,10 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
     >
 
     <EditText android:id="@+id/et_playersName_name1"
@@ -30,6 +34,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textCapWords"
+        />
+
+    <CheckBox android:id="@+id/cb_playersName_keepUnnamedPlayers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:checked="true"
+        android:text="@string/newGame_keepUnnamed"
         />
 
 </LinearLayout>

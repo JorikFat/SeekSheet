@@ -38,7 +38,7 @@
                     android:layout_weight="0.1"
                     />
 
-                <LinearLayout android:id="@+id/tv_sheet_playersName"
+                <LinearLayout android:id="@+id/LL_sheet_playersName"
                     style="@style/SheetTable.PlayersRow"
                     >
 

@@ -1,21 +1,23 @@
 package dev.jorik.cluegame.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SheetCells {
     private Cell[] cells;
-    private PlayerCells[] players;
+    private List<PlayerCells> players;
 
     public SheetCells(){
         this.cells = newColumn();
-        players = new PlayerCells[]{
-            new PlayerCells(),
-            new PlayerCells(),
-            new PlayerCells(),
-            new PlayerCells(),
-            new PlayerCells()
-        };
+        players = new ArrayList<>();
+        players.add(new PlayerCells());
+        players.add(new PlayerCells());
+        players.add(new PlayerCells());
+        players.add(new PlayerCells());
+        players.add(new PlayerCells());
     }
 
-    public SheetCells(Cell[] cells, PlayerCells[] players) {
+    public SheetCells(Cell[] cells, List<PlayerCells> players) {
         this.cells = cells;
         this.players = players;
     }
@@ -28,11 +30,11 @@ public class SheetCells {
         this.cells = cells;
     }
 
-    public PlayerCells[] getPlayers() {
+    public List<PlayerCells> getPlayers() {
         return players;
     }
 
-    public void setPlayers(PlayerCells[] players) {
+    public void setPlayers(List<PlayerCells> players) {
         this.players = players;
     }
 

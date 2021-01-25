@@ -5,7 +5,11 @@ public class PlayerCells {
     private Cell[] cells;
 
     public PlayerCells(){
-        cells = newColumn();
+        this(null, newColumn());
+    }
+
+    public PlayerCells(String playerName){
+        this(playerName, newColumn());
     }
 
     public PlayerCells(String playerName, Cell[] cells) {
@@ -33,7 +37,7 @@ public class PlayerCells {
         this.cells[index] = cell;
     }
 
-    private Cell[] newColumn(){//todo генерализировать
+    private static Cell[] newColumn(){//todo генерализировать
         Cell[] cells = new Cell[19];
         for (int i=0; i<19; i++) cells[i] = new Cell();
         return cells;

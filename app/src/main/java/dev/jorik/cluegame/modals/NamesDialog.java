@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ import static dev.jorik.cluegame.utils.Platform.getString;
 
 public class NamesDialog extends AlertDialog {
     private EditText[] nameFields = new EditText[5];
+    private CheckBox keepPlayers;
 
     public NamesDialog(Context context, CreateCallback callback) {
         super(context);
@@ -24,6 +26,7 @@ public class NamesDialog extends AlertDialog {
         nameFields[2] = view.findViewById(R.id.et_playersName_name3);
         nameFields[3] = view.findViewById(R.id.et_playersName_name4);
         nameFields[4] = view.findViewById(R.id.et_playersName_name5);
+        keepPlayers = view.findViewById(R.id.cb_playersName_keepUnnamedPlayers);
         setView(view);
         setTitle(R.string.sheet_initPlayersNames);
         setButton(BUTTON_POSITIVE, context.getString(R.string.start), (d, i) -> {
@@ -33,12 +36,12 @@ public class NamesDialog extends AlertDialog {
                 if (nameField.isEmpty()) continue;
                 else names.add(nameField);
             }
-            callback.onCreate(names.toArray(new String[0]));
+            callback.onCreate(names.toArray(new String[0]), keepPlayers.isChecked());
         });
         setCancelable(false);
     }
 
     public interface CreateCallback{
-        void onCreate(String[] names);
+        void onCreate(String[] names, boolean keepCells);
     }
 }

@@ -2,6 +2,9 @@ package dev.jorik.cluegame;
 
 import android.content.SharedPreferences;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import dev.jorik.cluegame.entity.Cell;
 import dev.jorik.cluegame.entity.Color;
 import dev.jorik.cluegame.entity.PlayerCells;
@@ -23,15 +26,15 @@ public class Config {
         SharedPreferences.Editor editor = preferences.edit()
                 .putString(PLAYER_CELLS, serializeArray(sheetCells.getCells()));
 
-        for (int i=0; i<5; i++) putPlayer(editor, i, sheetCells.getPlayers()[i]);
+        for (int i=0; i<sheetCells.getPlayers().size(); i++) putPlayer(editor, i, sheetCells.getPlayers().get(i));
         editor.apply();
     }
 
     public SheetCells getSheet(){
         String codedCells = preferences.getString(PLAYER_CELLS, "");
         Cell[] cells = codedCells.isEmpty() ? newColumn() : deserializeArray(codedCells.split("_"));
-        PlayerCells[] playerCells = new PlayerCells[5];
-        for (int i=0; i<5; i++) playerCells[i] = getPlayer(i);
+        List<PlayerCells> playerCells = new ArrayList<>();
+        for (int i=0; i<getPlayersCount(); i++) playerCells.add(getPlayer(i));
         return new SheetCells(cells, playerCells);
     }
 
@@ -85,5 +88,14 @@ public class Config {
         Cell[] cells = new Cell[19];
         for (int i=0; i<19; i++) cells[i] = new Cell();
         return cells;
+    }
+
+    private int getPlayersCount(){
+        for(int i=0; i<5; i++){
+            if (preferences.getString(String.format(PLAYER_NAME_PATTERN, i), null) == null){
+                return i;
+            }
+        }
+        return 5;
     }
 }

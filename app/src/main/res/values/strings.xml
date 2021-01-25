@@ -37,4 +37,5 @@
     <string name="sheet_clearTableWarning">После очищения таблицы данные будут удалены. Отменить это действие невозможно.</string>
     <string name="sheet_initPlayersNames">Введите имена игроков</string>
     <string name="start">Начать!</string>
+    <string name="newGame_keepUnnamed">Отображать не введенных пользователей</string>
 </resources>
