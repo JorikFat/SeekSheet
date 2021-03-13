@@ -4,6 +4,8 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverter;
+import androidx.room.TypeConverters;
 
 import dev.jorik.cluegame.core.Wrap;
 import dev.jorik.cluegame.games.data.database.DbGame;
@@ -15,7 +17,7 @@ public class DbPlayer implements Wrap<Player> {
     @PrimaryKey(autoGenerate = true) public long id;
     @ColumnInfo(name = "game_timestamp") public long gameTime;
     public String name;
-    public Cell[] cells;
+    @TypeConverters(CellsConverter.class) public Cell[] cells;
 
     public DbPlayer(long id, long gameTime, Cell[] cells, String name) {
         this.id = id;
@@ -24,8 +26,9 @@ public class DbPlayer implements Wrap<Player> {
         this.name = name;
     }
 
-    public DbPlayer(Player player){
+    public DbPlayer(long gameTime, Player player){
         id = player.getId();
+        this.gameTime = gameTime;
         name = player.getName();
         cells = player.getCells();
     }

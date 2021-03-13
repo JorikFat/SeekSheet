@@ -19,7 +19,8 @@ import dev.jorik.cluegame.games.domain.GamesDomain;
 import dev.jorik.cluegame.games.presentation.GameListViewModel;
 import dev.jorik.cluegame.games.presentation.ViewModelFactory;
 import dev.jorik.cluegame.modals.NamesDialog;
-import dev.jorik.cluegame.sheet.SheetsDomain;
+import dev.jorik.cluegame.sheet.data.DatabasePlayersProvider;
+import dev.jorik.cluegame.sheet.domain.SheetDomain;
 
 public class GamesListActivity extends AppCompatActivity {
     private RecyclerView list;
@@ -51,7 +52,7 @@ public class GamesListActivity extends AppCompatActivity {
         App app = ((App) getApplication());
         DatabaseProvider provider = new DatabaseProvider(app.getDatabase().gamesDao());
         GamesDomain domain = new GamesDomain(provider);
-        domain.setOutport(new SheetsDomain());
+        domain.setOutport(new SheetDomain(new DatabasePlayersProvider(app.getDatabase().playersDao())));
         return domain;
     }
 

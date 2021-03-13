@@ -8,10 +8,10 @@ import dev.jorik.cluegame.sheet.domain.PlayersProvider;
 import dev.jorik.cluegame.sheet.domain.entity.Player;
 import dev.jorik.cluegame.utils.Lang;
 
-class DatabaseProvider implements PlayersProvider {
+public class DatabasePlayersProvider implements PlayersProvider {
     private PlayersDao dao;
 
-    public DatabaseProvider(PlayersDao dao) {
+    public DatabasePlayersProvider(PlayersDao dao) {
         this.dao = dao;
     }
 
@@ -22,7 +22,7 @@ class DatabaseProvider implements PlayersProvider {
 
     @Override
     public void create(long timestamp, String[] names) {
-        for(String name : names) dao.create(new DbPlayer(new Player(name)));
+        for(String name : names) dao.create(new DbPlayer(timestamp, new Player(name)));
     }
 
     @Override

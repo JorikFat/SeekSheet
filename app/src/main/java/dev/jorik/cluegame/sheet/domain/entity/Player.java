@@ -12,7 +12,7 @@ public class Player {
     }
 
     public Player(String name){
-        this(-1, name, new Cell[19]);
+        this(0, name, emptyCells(19));
     }
 
     public String getName() {
@@ -33,5 +33,11 @@ public class Player {
 
     public long getId() {
         return id;
+    }
+
+    private static Cell[] emptyCells(int count){
+        Cell[] cells = new Cell[count];
+        for (int i = 0; i < count; i++) cells[i] = new Cell();
+        return cells;
     }
 }
