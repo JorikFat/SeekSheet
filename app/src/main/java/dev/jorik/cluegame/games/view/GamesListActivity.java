@@ -14,10 +14,12 @@ import java.util.Arrays;
 
 import dev.jorik.cluegame.App;
 import dev.jorik.cluegame.R;
-import dev.jorik.cluegame.games.database.GamesDao;
+import dev.jorik.cluegame.games.data.DatabaseProvider;
+import dev.jorik.cluegame.games.domain.GamesDomain;
 import dev.jorik.cluegame.games.presentation.GameListViewModel;
 import dev.jorik.cluegame.games.presentation.ViewModelFactory;
 import dev.jorik.cluegame.modals.NamesDialog;
+import dev.jorik.cluegame.sheet.SheetsDomain;
 
 public class GamesListActivity extends AppCompatActivity {
     private RecyclerView list;
@@ -38,12 +40,19 @@ public class GamesListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_gameslist);
         adapter = new GamesAdapter(game -> showMessage(Arrays.toString(game.getPlayersName())));
         list.setAdapter(adapter);
-        GamesDao dao = ((App) getApplication()).getDatabase().gamesDao();
-        viewModel = new ViewModelProvider(this, new ViewModelFactory(dao)).get(GameListViewModel.class);
+        viewModel = new ViewModelProvider(this, new ViewModelFactory(simpleLocationService())).get(GameListViewModel.class);
         viewModel.getGamesProvider().observe(this, games -> adapter.setData(games));
         add.setOnClickListener(view -> new NamesDialog(GamesListActivity.this,
                 (names, keepCells) -> viewModel.createGame(names, keepCells)).show()
         );
+    }
+
+    private GamesDomain simpleLocationService(){//todo вынести в LS
+        App app = ((App) getApplication());
+        DatabaseProvider provider = new DatabaseProvider(app.getDatabase().gamesDao());
+        GamesDomain domain = new GamesDomain(provider);
+        domain.setOutport(new SheetsDomain());
+        return domain;
     }
 
     private void showMessage(String message){
