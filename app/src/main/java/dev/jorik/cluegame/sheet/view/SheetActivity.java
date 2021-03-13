@@ -1,4 +1,4 @@
-package dev.jorik.cluegame;
+package dev.jorik.cluegame.sheet.view;
 
 import android.content.res.ColorStateList;
 import android.os.Bundle;
@@ -20,6 +20,8 @@ import androidx.core.widget.ImageViewCompat;
 import java.util.ArrayList;
 import java.util.List;
 
+import dev.jorik.cluegame.Config;
+import dev.jorik.cluegame.R;
 import dev.jorik.cluegame.sheet.domain.entity.Cell;
 import dev.jorik.cluegame.sheet.domain.entity.PlayerCells;
 import dev.jorik.cluegame.sheet.domain.entity.SheetCells;

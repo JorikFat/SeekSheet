@@ -13,8 +13,7 @@ public class ViewModelFactory implements ViewModelProvider.Factory{
         this.domain = domain;
     }
 
-    @NonNull
-    @Override @SuppressWarnings("unchecked")
+    @NonNull @Override @SuppressWarnings("unchecked")
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
         return (T) new GameListViewModel(domain);
     }

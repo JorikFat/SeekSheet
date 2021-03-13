@@ -3,7 +3,7 @@
     package="dev.jorik.cluegame">
 
     <application
-        android:name=".App"
+        android:name=".application.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -17,7 +17,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SheetActivity">
+        <activity android:name=".sheet.view.SheetActivity">
         </activity>
     </application>
 

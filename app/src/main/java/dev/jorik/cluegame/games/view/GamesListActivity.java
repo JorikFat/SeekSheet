@@ -12,7 +12,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Arrays;
 
-import dev.jorik.cluegame.App;
+import dev.jorik.cluegame.application.App;
 import dev.jorik.cluegame.R;
 import dev.jorik.cluegame.games.data.DatabaseProvider;
 import dev.jorik.cluegame.games.domain.GamesDomain;

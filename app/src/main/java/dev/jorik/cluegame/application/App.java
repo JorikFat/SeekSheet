@@ -1,4 +1,4 @@
-package dev.jorik.cluegame;
+package dev.jorik.cluegame.application;
 
 import android.app.Application;
 
