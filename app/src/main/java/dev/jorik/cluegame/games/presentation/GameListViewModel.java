@@ -1,17 +1,15 @@
-package dev.jorik.cluegame.gameslist.presentation;
+package dev.jorik.cluegame.games.presentation;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import dev.jorik.cluegame.gameslist.Game;
-import dev.jorik.cluegame.gameslist.data.DbGame;
-import dev.jorik.cluegame.gameslist.data.GamesDao;
-import dev.jorik.cluegame.utils.Lang;
+import dev.jorik.cluegame.games.domain.Game;
+import dev.jorik.cluegame.games.database.DbGame;
+import dev.jorik.cluegame.games.database.GamesDao;
 
 import static dev.jorik.cluegame.utils.Lang.filter;
 import static dev.jorik.cluegame.utils.Lang.map;

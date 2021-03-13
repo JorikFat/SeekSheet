@@ -1,4 +1,4 @@
-package dev.jorik.cluegame.gameslist;
+package dev.jorik.cluegame.games.view;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dev.jorik.cluegame.R;
+import dev.jorik.cluegame.games.domain.Game;
 
 public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.GameViewHolder> {
     private DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");

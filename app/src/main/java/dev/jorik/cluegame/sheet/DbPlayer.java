@@ -1,4 +1,4 @@
-package dev.jorik.cluegame.gameslist.data;
+package dev.jorik.cluegame.sheet;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;

@@ -1,4 +1,4 @@
-package dev.jorik.cluegame.gameslist.data;
+package dev.jorik.cluegame.games.database;
 
 import androidx.room.Dao;
 import androidx.room.Delete;
@@ -7,6 +7,8 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import java.util.List;
+
+import dev.jorik.cluegame.games.database.DbGame;
 
 @Dao
 public interface GamesDao {

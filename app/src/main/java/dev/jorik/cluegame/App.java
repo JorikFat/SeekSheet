@@ -4,7 +4,7 @@ import android.app.Application;
 
 import androidx.room.Room;
 
-import dev.jorik.cluegame.gameslist.data.GameDatabase;
+import dev.jorik.cluegame.application.GameDatabase;
 
 public class App extends Application {
     private GameDatabase database;

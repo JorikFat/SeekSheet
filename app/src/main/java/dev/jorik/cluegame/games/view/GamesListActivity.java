@@ -1,4 +1,4 @@
-package dev.jorik.cluegame.gameslist;
+package dev.jorik.cluegame.games.view;
 
 import android.os.Bundle;
 import android.widget.Toast;
@@ -16,7 +16,7 @@ import java.util.Arrays;
 
 import dev.jorik.cluegame.App;
 import dev.jorik.cluegame.R;
-import dev.jorik.cluegame.gameslist.presentation.GameListViewModel;
+import dev.jorik.cluegame.games.presentation.GameListViewModel;
 import dev.jorik.cluegame.modals.NamesDialog;
 
 public class GamesListActivity extends AppCompatActivity {

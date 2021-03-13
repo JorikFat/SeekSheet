@@ -1,4 +1,4 @@
-package dev.jorik.cluegame.gameslist.data;
+package dev.jorik.cluegame.games.database;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -9,10 +9,10 @@ import java.util.Arrays;
 import java.util.Date;
 
 import dev.jorik.cluegame.core.Wrap;
-import dev.jorik.cluegame.gameslist.Game;
+import dev.jorik.cluegame.games.domain.Game;
 import dev.jorik.cluegame.utils.Lang;
 
-import static dev.jorik.cluegame.gameslist.data.DbGame.dbName;
+import static dev.jorik.cluegame.games.database.DbGame.dbName;
 
 @Entity(tableName = dbName)
 public class DbGame implements Wrap<Game> {

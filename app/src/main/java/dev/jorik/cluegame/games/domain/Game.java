@@ -1,4 +1,4 @@
-package dev.jorik.cluegame.gameslist;
+package dev.jorik.cluegame.games.domain;
 
 import java.util.Date;
 
