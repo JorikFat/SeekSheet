@@ -1,4 +1,4 @@
-package dev.jorik.cluegame.entity;
+package dev.jorik.cluegame.sheet.domain.entity;
 
 public class PlayerCells {
     private String playerName;

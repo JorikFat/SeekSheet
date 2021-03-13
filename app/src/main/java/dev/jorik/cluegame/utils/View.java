@@ -6,7 +6,7 @@ import androidx.annotation.ColorInt;
 import androidx.core.content.ContextCompat;
 
 import dev.jorik.cluegame.R;
-import dev.jorik.cluegame.entity.Color;
+import dev.jorik.cluegame.sheet.domain.entity.Color;
 
 public class View {
     public static @ColorInt int getIntColor(Context context, Color color){

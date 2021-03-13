@@ -9,11 +9,9 @@ import java.util.Date;
 import dev.jorik.cluegame.core.Wrap;
 import dev.jorik.cluegame.games.domain.Game;
 
-import static dev.jorik.cluegame.games.data.database.DbGame.dbName;
 
-@Entity(tableName = dbName)
+@Entity(tableName = GamesDao.table)
 public class DbGame implements Wrap<Game> {
-    public static final String dbName = "Game";
     @PrimaryKey public long timestamp;
     @TypeConverters(NamesConverter.class) public String[] names;
 

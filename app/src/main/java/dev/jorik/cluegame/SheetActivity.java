@@ -20,10 +20,10 @@ import androidx.core.widget.ImageViewCompat;
 import java.util.ArrayList;
 import java.util.List;
 
-import dev.jorik.cluegame.entity.Cell;
-import dev.jorik.cluegame.entity.PlayerCells;
-import dev.jorik.cluegame.entity.SheetCells;
-import dev.jorik.cluegame.entity.Value;
+import dev.jorik.cluegame.sheet.domain.entity.Cell;
+import dev.jorik.cluegame.sheet.domain.entity.PlayerCells;
+import dev.jorik.cluegame.sheet.domain.entity.SheetCells;
+import dev.jorik.cluegame.sheet.domain.entity.Value;
 import dev.jorik.cluegame.modals.ConfirmDialog;
 import dev.jorik.cluegame.modals.NamesDialog;
 import dev.jorik.cluegame.modals.SelectionPopup;

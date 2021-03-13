@@ -1,13 +1,19 @@
 package dev.jorik.cluegame.utils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Lang {
     public static <T> T[] filter(T[] array, Condition<T> condition){
+        return filter(Arrays.asList(array), condition).toArray(array);
+    }
+
+    public static <T> List<T> filter(List<T> list, Condition<T> condition){
         List<T> tempList = new ArrayList<>();
-        for(T t : array) if(condition.check(t)) tempList.add(t);
-        return tempList.toArray(array);
+        for(T t : list) if(condition.check(t)) tempList.add(t);
+        return tempList;
     }
 
     public static <S, T> List<T> map(List<S> list, Converter<S, T> converter){

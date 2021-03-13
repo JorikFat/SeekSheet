@@ -9,10 +9,10 @@ import android.widget.PopupWindow;
 
 import androidx.core.widget.ImageViewCompat;
 
-import dev.jorik.cluegame.entity.Cell;
-import dev.jorik.cluegame.entity.Value;
+import dev.jorik.cluegame.sheet.domain.entity.Cell;
+import dev.jorik.cluegame.sheet.domain.entity.Value;
 import dev.jorik.cluegame.R;
-import dev.jorik.cluegame.entity.Color;
+import dev.jorik.cluegame.sheet.domain.entity.Color;
 
 import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 import static dev.jorik.cluegame.utils.View.getIntColor;

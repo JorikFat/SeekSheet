@@ -5,11 +5,11 @@ import android.content.SharedPreferences;
 import java.util.ArrayList;
 import java.util.List;
 
-import dev.jorik.cluegame.entity.Cell;
-import dev.jorik.cluegame.entity.Color;
-import dev.jorik.cluegame.entity.PlayerCells;
-import dev.jorik.cluegame.entity.SheetCells;
-import dev.jorik.cluegame.entity.Value;
+import dev.jorik.cluegame.sheet.domain.entity.Cell;
+import dev.jorik.cluegame.sheet.domain.entity.Color;
+import dev.jorik.cluegame.sheet.domain.entity.PlayerCells;
+import dev.jorik.cluegame.sheet.domain.entity.SheetCells;
+import dev.jorik.cluegame.sheet.domain.entity.Value;
 
 public class Config {
     private static final String PLAYER_CELLS = "player_cells";

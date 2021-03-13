@@ -17,6 +17,10 @@ public class Game {
         return names;
     }
 
+    public Date getDate(){
+        return creatingDate;
+    }
+
     public static class Null extends Game{
         public Null() {
             super(null, null);

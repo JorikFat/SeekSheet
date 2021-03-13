@@ -10,7 +10,8 @@ import java.util.List;
 
 @Dao
 public interface GamesDao {
-    @Query("SELECT * FROM " + DbGame.dbName) List<DbGame> readAll();
+    String table = "Game";
+    @Query("SELECT * FROM " + table) List<DbGame> readAll();
     @Insert void create(DbGame game);
     @Update void update(DbGame game);
     @Delete void delete(DbGame game);
