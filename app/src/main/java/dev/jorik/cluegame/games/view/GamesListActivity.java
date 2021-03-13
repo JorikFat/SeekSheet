@@ -3,10 +3,8 @@ package dev.jorik.cluegame.games.view;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,7 +14,9 @@ import java.util.Arrays;
 
 import dev.jorik.cluegame.App;
 import dev.jorik.cluegame.R;
+import dev.jorik.cluegame.games.database.GamesDao;
 import dev.jorik.cluegame.games.presentation.GameListViewModel;
+import dev.jorik.cluegame.games.presentation.ViewModelFactory;
 import dev.jorik.cluegame.modals.NamesDialog;
 
 public class GamesListActivity extends AppCompatActivity {
@@ -38,7 +38,8 @@ public class GamesListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_gameslist);
         adapter = new GamesAdapter(game -> showMessage(Arrays.toString(game.getPlayersName())));
         list.setAdapter(adapter);
-        viewModel = new ViewModelProvider(this, new ViewModelFactory()).get(GameListViewModel.class);
+        GamesDao dao = ((App) getApplication()).getDatabase().gamesDao();
+        viewModel = new ViewModelProvider(this, new ViewModelFactory(dao)).get(GameListViewModel.class);
         viewModel.getGamesProvider().observe(this, games -> adapter.setData(games));
         add.setOnClickListener(view -> new NamesDialog(GamesListActivity.this,
                 (names, keepCells) -> viewModel.createGame(names, keepCells)).show()
@@ -47,12 +48,5 @@ public class GamesListActivity extends AppCompatActivity {
 
     private void showMessage(String message){
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-    }
-
-    public class ViewModelFactory implements ViewModelProvider.Factory{
-        @NonNull @Override @SuppressWarnings("unchecked")
-        public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-            return (T) new GameListViewModel(((App) getApplication()).getDatabase().gamesDao());
-        }
     }
 }
