@@ -10,7 +10,7 @@ public class NamesConverter{
     private final String separator = "_";
     @TypeConverter
     public String[] toData(String line){
-        return line.split(separator);
+        return line.split(separator, -1);
     }
 
     @TypeConverter
