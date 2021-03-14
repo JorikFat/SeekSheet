@@ -39,7 +39,10 @@ public class GamesListActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gameslist);
-        adapter = new GamesAdapter(game -> showMessage(Arrays.toString(game.getPlayersName())));
+        adapter = new GamesAdapter(game -> {
+            viewModel.selectGame(game);
+            startActivity(new Intent(GamesListActivity.this, SheetActivity.class));
+        });
         list.setAdapter(adapter);
         viewModel = new ViewModelProvider(this, new ViewModelFactory(simpleLocationService())).get(GameListViewModel.class);
         viewModel.getGamesProvider().observe(this, games -> adapter.setData(games));

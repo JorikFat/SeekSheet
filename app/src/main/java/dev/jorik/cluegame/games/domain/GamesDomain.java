@@ -17,6 +17,10 @@ public class GamesDomain implements DestroyUseCase {
         return provider.getGames();
     }
 
+    public void selectGame(Game game){
+        outport.selectGame(game);
+    }
+
     public void createGame(Game game){
         provider.createGame(game);//todo распараллелить
         outport.createGame(game);

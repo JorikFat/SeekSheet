@@ -34,6 +34,11 @@ public class SheetDomain implements GamesOutport, DestroyUseCase {
     }
 
     @Override
+    public void selectGame(Game game) {
+        this.gameTimestamp = game.getDate().getTime();
+    }
+
+    @Override
     public void createGame(Game game) {
         gameTimestamp = game.getDate().getTime();
         String[] players = new String[game.getPlayersName().length+1];

@@ -35,4 +35,8 @@ public class GameListViewModel extends BaseViewModel {
         games.add(newGame);
         gamesProvider.postValue(games);
     }
+
+    public void selectGame(Game game){
+        domain.selectGame(game);
+    }
 }
