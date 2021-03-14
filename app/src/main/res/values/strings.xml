@@ -42,4 +42,5 @@
     <string name="gameslist_deleteGame">Удалить игру</string>
     <string name="gameslist_deleteGame_title">Удаление игры</string>
     <string name="gameslist_deleteGame_text">Уверены, что хотите удалить эту игру?\nВесь ее прогресс будет утерян</string>
+    <string name="gameitem_emptyName">**пусто**</string>
 </resources>

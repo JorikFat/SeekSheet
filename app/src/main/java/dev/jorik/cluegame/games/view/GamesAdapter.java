@@ -78,7 +78,9 @@ public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.GameViewHold
                 for(int i=countDiff; i<0; i++) names.addView(new TextView(itemView.getContext()));
             }
             for (int i=0; i<game.getPlayersName().length; i++){
-                ((TextView)names.getChildAt(i)).setText(game.getPlayersName()[i]);
+                String playerName = game.getPlayersName()[i];
+                String name = playerName.isEmpty() ? itemView.getContext().getString(R.string.gameitem_emptyName) : playerName;
+                ((TextView)names.getChildAt(i)).setText(name);
             }
         }
     }
