@@ -13,9 +13,9 @@ import dev.jorik.cluegame.games.domain.GamesDomain;
 import static dev.jorik.cluegame.utils.Lang.filter;
 
 public class GameListViewModel extends BaseViewModel {
-    private GamesDomain domain;
-    private List<Game> games;
-    private MutableLiveData<List<Game>> gamesProvider = new MutableLiveData<>();
+    private final GamesDomain domain;
+    private final List<Game> games;
+    private final MutableLiveData<List<Game>> gamesProvider = new MutableLiveData<>();
 
     public GameListViewModel(GamesDomain domain) {
         super(domain);

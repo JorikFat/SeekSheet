@@ -4,15 +4,17 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
-import androidx.room.TypeConverter;
 import androidx.room.TypeConverters;
 
-import dev.jorik.cluegame.core.Wrap;
 import dev.jorik.cluegame.games.data.database.DbGame;
 import dev.jorik.cluegame.sheet.domain.entity.Cell;
 import dev.jorik.cluegame.sheet.domain.entity.Player;
+import dev.jorik.cluegame.utils.Wrap;
 
-@Entity(foreignKeys = @ForeignKey(entity = DbGame.class, parentColumns = "timestamp", childColumns = "game_timestamp"))
+@Entity(
+        foreignKeys = @ForeignKey(entity = DbGame.class, parentColumns = "timestamp", childColumns = "game_timestamp"),
+        tableName = PlayersDao.table
+)
 public class DbPlayer implements Wrap<Player> {
     @PrimaryKey(autoGenerate = true) public long id;
     @ColumnInfo(name = "game_timestamp") public long gameTime;

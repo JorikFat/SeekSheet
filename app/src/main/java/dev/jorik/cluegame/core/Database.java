@@ -1,6 +1,5 @@
-package dev.jorik.cluegame.application;
+package dev.jorik.cluegame.core;
 
-import androidx.room.Database;
 import androidx.room.RoomDatabase;
 
 import dev.jorik.cluegame.games.data.database.DbGame;
@@ -8,8 +7,8 @@ import dev.jorik.cluegame.games.data.database.GamesDao;
 import dev.jorik.cluegame.sheet.data.database.DbPlayer;
 import dev.jorik.cluegame.sheet.data.database.PlayersDao;
 
-@Database(entities = {DbGame.class, DbPlayer.class}, version = 1)
-public abstract class GameDatabase extends RoomDatabase{
+@androidx.room.Database(entities = {DbGame.class, DbPlayer.class}, version = 1)
+public abstract class Database extends RoomDatabase{
     public abstract GamesDao gamesDao();
     public abstract PlayersDao playersDao();
 }

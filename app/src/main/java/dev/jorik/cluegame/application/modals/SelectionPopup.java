@@ -1,4 +1,4 @@
-package dev.jorik.cluegame.modals;
+package dev.jorik.cluegame.application.modals;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
@@ -18,13 +18,12 @@ import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 import static dev.jorik.cluegame.utils.View.getIntColor;
 
 public class SelectionPopup {
-    private Context context;
+    private final Context context;
     private ImageView cell;
-    private View view;
+    private final View view;
     private PopupWindow window;
-    private SelectionCallback callback;
     private Color color;
-    private ImageView[] icons = new ImageView[4];
+    private final ImageView[] icons = new ImageView[4];
     private int verticalOffset;
 
     public SelectionPopup(Context context, SelectionCallback callback) {
@@ -69,7 +68,6 @@ public class SelectionPopup {
             window.dismiss();
         });
 
-        this.callback = callback;
         view.findViewById(R.id.view_selector_black).setOnClickListener(view -> setColor(Color.BLACK));
         view.findViewById(R.id.view_selector_red).setOnClickListener(view -> setColor(Color.RED));
         view.findViewById(R.id.view_selector_green).setOnClickListener(view -> setColor(Color.GREEN));

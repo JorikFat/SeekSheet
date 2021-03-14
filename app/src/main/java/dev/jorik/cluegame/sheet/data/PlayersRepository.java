@@ -8,10 +8,10 @@ import dev.jorik.cluegame.sheet.domain.PlayersProvider;
 import dev.jorik.cluegame.sheet.domain.entity.Player;
 import dev.jorik.cluegame.utils.Lang;
 
-public class DatabasePlayersProvider implements PlayersProvider {
-    private PlayersDao dao;
+public class PlayersRepository implements PlayersProvider {
+    private final PlayersDao dao;
 
-    public DatabasePlayersProvider(PlayersDao dao) {
+    public PlayersRepository(PlayersDao dao) {
         this.dao = dao;
     }
 

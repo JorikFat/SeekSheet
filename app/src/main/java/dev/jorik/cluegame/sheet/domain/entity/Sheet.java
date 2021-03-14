@@ -1,9 +1,9 @@
 package dev.jorik.cluegame.sheet.domain.entity;
 
 public class Sheet {
-    private long id;
+    private final long id;
     private Cell[] cells;
-    private Player[] players;
+    private final Player[] players;
 
     public Sheet(long id, Cell[] cells, Player[] players) {
         this.id = id;

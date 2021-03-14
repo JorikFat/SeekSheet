@@ -9,10 +9,10 @@ import dev.jorik.cluegame.games.domain.GamesProvider;
 
 import static dev.jorik.cluegame.utils.Lang.map;
 
-public class DatabaseProvider implements GamesProvider {
-    private GamesDao dao;
+public class GamesRepository implements GamesProvider {
+    private final GamesDao dao;
 
-    public DatabaseProvider(GamesDao dao) {
+    public GamesRepository(GamesDao dao) {
         this.dao = dao;
     }
 

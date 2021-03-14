@@ -1,4 +1,4 @@
-package dev.jorik.cluegame.modals;
+package dev.jorik.cluegame.application.modals;
 
 import android.widget.ImageView;
 

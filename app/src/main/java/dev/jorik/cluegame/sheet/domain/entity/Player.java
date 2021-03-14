@@ -3,7 +3,7 @@ package dev.jorik.cluegame.sheet.domain.entity;
 import static dev.jorik.cluegame.sheet.domain.entity.Cell.emptyCells;
 
 public class Player {
-    private long id;
+    private final long id;
     private String name;
     private Cell[] cells;
 

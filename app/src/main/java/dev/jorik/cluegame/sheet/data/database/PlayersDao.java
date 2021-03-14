@@ -11,9 +11,8 @@ import java.util.List;
 @Dao
 public interface PlayersDao {
     String table = "Players";
-    @Query("SELECT * FROM dbplayer WHERE game_timestamp = :timestamp")
+    @Query("SELECT * FROM "+ table +" WHERE game_timestamp = :timestamp")
     List<DbPlayer> readGamePlayers(long timestamp);
     @Insert void create(DbPlayer game);
     @Update void update(DbPlayer game);
-    @Delete void delete(DbPlayer game);
 }

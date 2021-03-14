@@ -1,5 +1,7 @@
 package dev.jorik.cluegame.sheet.presentation;
 
+import androidx.lifecycle.ViewModel;
+
 import com.hadilq.liveevent.LiveEvent;
 
 import java.util.ArrayList;
@@ -11,13 +13,12 @@ import dev.jorik.cluegame.sheet.domain.entity.Cell;
 import dev.jorik.cluegame.sheet.domain.entity.Player;
 import dev.jorik.cluegame.sheet.domain.entity.Sheet;
 
-public class SheetViewModel extends BaseViewModel {
-    private SheetDomain domain;
-    private Sheet sheet;
-    private LiveEvent<CellUpdate> changedCell = new LiveEvent<>();
+public class SheetViewModel extends ViewModel {
+    private final SheetDomain domain;
+    private final Sheet sheet;
+    private final LiveEvent<CellUpdate> changedCell = new LiveEvent<>();
 
     public SheetViewModel(SheetDomain domain) {
-        super(domain);
         this.domain = domain;
         sheet = domain.getSheet();
     }

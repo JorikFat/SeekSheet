@@ -6,7 +6,7 @@ import androidx.room.TypeConverters;
 
 import java.util.Date;
 
-import dev.jorik.cluegame.core.Wrap;
+import dev.jorik.cluegame.utils.Wrap;
 import dev.jorik.cluegame.games.domain.Game;
 
 

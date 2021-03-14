@@ -18,9 +18,9 @@ import dev.jorik.cluegame.R;
 import dev.jorik.cluegame.games.domain.Game;
 
 public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.GameViewHolder> {
-    private DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
-    private List<Game> data = new ArrayList<>();
-    private Callback callback;
+    private final DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+    private final List<Game> data = new ArrayList<>();
+    private final Callback callback;
 
     public GamesAdapter(Callback callback) {
         this.callback = callback;
@@ -56,8 +56,8 @@ public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.GameViewHold
     }
 
     class GameViewHolder extends RecyclerView.ViewHolder{
-        private LinearLayout names;
-        private TextView date;
+        private final LinearLayout names;
+        private final TextView date;
 
         public GameViewHolder(@NonNull View itemView) {
             super(itemView);

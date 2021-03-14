@@ -2,7 +2,6 @@ package dev.jorik.cluegame.sheet.view;
 
 import android.content.res.ColorStateList;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,31 +15,21 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.ImageViewCompat;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import dev.jorik.cluegame.Config;
 import dev.jorik.cluegame.R;
 import dev.jorik.cluegame.application.App;
-import dev.jorik.cluegame.games.presentation.GameListViewModel;
-import dev.jorik.cluegame.sheet.domain.SheetDomain;
+import dev.jorik.cluegame.application.modals.ConfirmDialog;
+import dev.jorik.cluegame.application.modals.SelectionPopup;
 import dev.jorik.cluegame.sheet.domain.entity.Cell;
 import dev.jorik.cluegame.sheet.domain.entity.Player;
-import dev.jorik.cluegame.sheet.domain.entity.PlayerCells;
 import dev.jorik.cluegame.sheet.domain.entity.Sheet;
-import dev.jorik.cluegame.sheet.domain.entity.SheetCells;
 import dev.jorik.cluegame.sheet.domain.entity.Value;
-import dev.jorik.cluegame.modals.ConfirmDialog;
-import dev.jorik.cluegame.modals.NamesDialog;
-import dev.jorik.cluegame.modals.SelectionPopup;
-import dev.jorik.cluegame.sheet.presentation.CellUpdate;
 import dev.jorik.cluegame.sheet.presentation.SheetModelFactory;
 import dev.jorik.cluegame.sheet.presentation.SheetViewModel;
-import dev.jorik.cluegame.utils.Lang;
 
 import static android.graphics.Color.TRANSPARENT;
 import static dev.jorik.cluegame.utils.View.getIntColor;
@@ -48,8 +37,8 @@ import static dev.jorik.cluegame.utils.View.getIntColor;
 public class SheetActivity extends AppCompatActivity {
     private SheetViewModel viewModel;
     private SelectionPopup selecting;
-    private List<TextView> playersName = new ArrayList<>();
-    private List<TableRow> sheetRows = new ArrayList<>();
+    private final List<TextView> playersName = new ArrayList<>();
+    private final List<TableRow> sheetRows = new ArrayList<>();
 
     @Override
     public void setContentView(int layoutResID) {
@@ -82,15 +71,15 @@ public class SheetActivity extends AppCompatActivity {
             }
         });
         viewModel.getChangedCell().observe(this, cellUpdate -> {
-            TableRow tableRow = sheetRows.get(cellUpdate.getCellIndex());
+            TableRow tableRow = sheetRows.get(cellUpdate.cellIndex);
             ImageView cell;
-            if(cellUpdate.getPlayerIndex() == -1){
+            if(cellUpdate.playerIndex == -1){
                 cell = ((ImageView) tableRow.getChildAt(1));
             } else {
                 LinearLayout playerCells = (LinearLayout) tableRow.getChildAt(2);
-                cell = (ImageView) playerCells.getChildAt(cellUpdate.getPlayerIndex());
+                cell = (ImageView) playerCells.getChildAt(cellUpdate.playerIndex);
             }
-            setCellIcon(cell, cellUpdate.getValue());
+            setCellIcon(cell, cellUpdate.value);
         });
         fillPlayersName(viewModel.getSheet().getPlayers());
         fillIcons(viewModel.getSheet());

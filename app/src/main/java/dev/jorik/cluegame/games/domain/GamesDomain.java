@@ -5,7 +5,7 @@ import java.util.List;
 import dev.jorik.cluegame.application.DestroyUseCase;
 
 public class GamesDomain implements DestroyUseCase {
-    private GamesProvider provider;
+    private final GamesProvider provider;
     private GamesOutport outport;
 
     public GamesDomain(GamesProvider provider) {

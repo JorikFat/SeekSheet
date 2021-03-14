@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModelProvider;
 import dev.jorik.cluegame.games.domain.GamesDomain;
 
 public class ViewModelFactory implements ViewModelProvider.Factory{
-    private GamesDomain domain;
+    private final GamesDomain domain;
 
     public ViewModelFactory(GamesDomain domain) {
         this.domain = domain;

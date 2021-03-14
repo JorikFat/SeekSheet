@@ -2,24 +2,18 @@ package dev.jorik.cluegame.sheet.domain;
 
 import java.util.List;
 
-import dev.jorik.cluegame.application.DestroyUseCase;
 import dev.jorik.cluegame.games.domain.Game;
 import dev.jorik.cluegame.games.domain.GamesOutport;
-import dev.jorik.cluegame.sheet.domain.entity.Cell;
 import dev.jorik.cluegame.sheet.domain.entity.Player;
 import dev.jorik.cluegame.sheet.domain.entity.Sheet;
 import dev.jorik.cluegame.utils.Lang;
 
-public class SheetDomain implements GamesOutport, DestroyUseCase {
-    private PlayersProvider provider;
+public class SheetDomain implements GamesOutport{
+    private final PlayersProvider provider;
     private long gameTimestamp;
 
     public SheetDomain(PlayersProvider provider){
         this.provider = provider;
-    }
-
-    public void setTimestamp(long timestamp){
-        this.gameTimestamp = timestamp;
     }
 
     public Sheet getSheet(){
@@ -46,11 +40,6 @@ public class SheetDomain implements GamesOutport, DestroyUseCase {
             players[i] = game.getPlayersName()[i-1];
         }
         provider.create(gameTimestamp, players);
-    }
-
-    @Override
-    public void destroy() {
-
     }
 
     private Player[] getAllPlayers(Sheet sheet){
