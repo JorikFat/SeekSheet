@@ -29,6 +29,7 @@ public class GamesListActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         ActivityGameslistBinding binding = ActivityGameslistBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());

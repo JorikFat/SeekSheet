@@ -7,6 +7,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="Splash">
+        <item name="android:windowBackground">@drawable/background_splash</item>
+    </style>
+
     <style name="Selection"/>
     <style name="Selection.Container">
         <item name="android:layout_width">match_parent</item>
