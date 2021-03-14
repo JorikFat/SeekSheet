@@ -39,4 +39,9 @@ public class SheetViewModel extends BaseViewModel {
     public void onHide(){
         domain.saveGame(sheet);
     }
+
+    public void clearSheet(){
+        sheet.clear();
+        domain.saveGame(sheet);
+    }
 }

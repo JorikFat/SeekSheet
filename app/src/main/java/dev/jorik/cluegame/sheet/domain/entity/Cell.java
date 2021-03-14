@@ -23,4 +23,10 @@ public class Cell {
     public Color getColor() {
         return color;
     }
+
+    public static Cell[] emptyCells(int count){
+        Cell[] cells = new Cell[count];
+        for (int i = 0; i < count; i++) cells[i] = new Cell();
+        return cells;
+    }
 }

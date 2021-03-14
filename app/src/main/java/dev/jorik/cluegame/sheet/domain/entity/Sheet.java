@@ -22,4 +22,11 @@ public class Sheet {
     public long getId(){
         return id;
     }
+
+    public void clear(){
+        cells = Cell.emptyCells(19);
+        for(Player player :players){
+            player.setCells(Cell.emptyCells(19));
+        }
+    }
 }

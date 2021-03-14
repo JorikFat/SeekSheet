@@ -1,5 +1,7 @@
 package dev.jorik.cluegame.sheet.domain.entity;
 
+import static dev.jorik.cluegame.sheet.domain.entity.Cell.emptyCells;
+
 public class Player {
     private long id;
     private String name;
@@ -35,9 +37,4 @@ public class Player {
         return id;
     }
 
-    private static Cell[] emptyCells(int count){
-        Cell[] cells = new Cell[count];
-        for (int i = 0; i < count; i++) cells[i] = new Cell();
-        return cells;
-    }
 }
