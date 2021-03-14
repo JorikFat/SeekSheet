@@ -40,4 +40,10 @@ public class GameListViewModel extends BaseViewModel {
     public void selectGame(Game game){
         domain.selectGame(game);
     }
+
+    public void onDeleteClick(Game game){
+        games.remove(game);
+        gamesProvider.postValue(games);
+        domain.deleteGame(game);
+    }
 }

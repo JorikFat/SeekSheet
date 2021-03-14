@@ -39,4 +39,7 @@
     <string name="start">Начать!</string>
     <string name="newGame_keepUnnamed">Отображать не введенных пользователей</string>
     <string name="gameslist_createGame">Создать игру</string>
+    <string name="gameslist_deleteGame">Удалить игру</string>
+    <string name="gameslist_deleteGame_title">Удаление игры</string>
+    <string name="gameslist_deleteGame_text">Уверены, что хотите удалить эту игру?\nВесь ее прогресс будет утерян</string>
 </resources>

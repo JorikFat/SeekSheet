@@ -5,4 +5,5 @@ import java.util.List;
 public interface GamesProvider {
     List<Game> getGames();
     void createGame(Game game);
+    void deleteGame(Game game);
 }

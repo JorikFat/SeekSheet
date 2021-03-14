@@ -52,6 +52,7 @@ public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.GameViewHold
 
     public interface Callback{
         void onItemClick(Game game);
+        void onItemHold(View holder, Game game);
     }
 
     class GameViewHolder extends RecyclerView.ViewHolder{
@@ -61,6 +62,10 @@ public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.GameViewHold
             super(binding.getRoot());
             this.binding = binding;
             itemView.setOnClickListener(view -> callback.onItemClick(data.get(getAdapterPosition())));
+            itemView.setOnLongClickListener(v -> {
+                callback.onItemHold(itemView, data.get(getAdapterPosition()));
+                return true;
+            });
         }
 
         public void bind(Game game){

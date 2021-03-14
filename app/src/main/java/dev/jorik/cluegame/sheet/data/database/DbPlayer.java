@@ -11,8 +11,15 @@ import dev.jorik.cluegame.sheet.domain.entity.Cell;
 import dev.jorik.cluegame.sheet.domain.entity.Player;
 import dev.jorik.cluegame.utils.Wrap;
 
+import static androidx.room.ForeignKey.CASCADE;
+
 @Entity(
-        foreignKeys = @ForeignKey(entity = DbGame.class, parentColumns = "timestamp", childColumns = "game_timestamp"),
+        foreignKeys = @ForeignKey(
+                entity = DbGame.class,
+                parentColumns = "timestamp",
+                childColumns = "game_timestamp",
+                onDelete = CASCADE
+        ),
         tableName = PlayersDao.table
 )
 public class DbPlayer implements Wrap<Player> {

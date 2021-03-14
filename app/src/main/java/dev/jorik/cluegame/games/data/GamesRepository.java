@@ -25,4 +25,9 @@ public class GamesRepository implements GamesProvider {
     public void createGame(Game game) {
         dao.create(new DbGame(game));
     }
+
+    @Override
+    public void deleteGame(Game game) {
+        dao.delete(new DbGame(game));
+    }
 }
