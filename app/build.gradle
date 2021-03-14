@@ -9,7 +9,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 30
         versionCode 1
-        versionName "1.0.0 [314]"
+        versionName "1.0.0 [323]"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -40,6 +40,8 @@ dependencies {
     def room = "1.1.1"
     implementation "android.arch.persistence.room:runtime:$room"
     annotationProcessor "android.arch.persistence.room:compiler:$room"
+    def liveEvent = "1.2.0"
+    implementation "com.github.hadilq.liveevent:liveevent:$liveEvent"
 }
 
 import java.util.regex.Pattern

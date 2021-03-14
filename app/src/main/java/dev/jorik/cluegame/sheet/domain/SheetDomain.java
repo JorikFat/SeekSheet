@@ -1,31 +1,36 @@
 package dev.jorik.cluegame.sheet.domain;
 
+import java.util.List;
+
 import dev.jorik.cluegame.application.DestroyUseCase;
 import dev.jorik.cluegame.games.domain.Game;
 import dev.jorik.cluegame.games.domain.GamesOutport;
+import dev.jorik.cluegame.sheet.domain.entity.Cell;
 import dev.jorik.cluegame.sheet.domain.entity.Player;
+import dev.jorik.cluegame.sheet.domain.entity.Sheet;
+import dev.jorik.cluegame.utils.Lang;
 
 public class SheetDomain implements GamesOutport, DestroyUseCase {
     private PlayersProvider provider;
     private long gameTimestamp;
-    private Player[] players;
-
-    public SheetDomain(long gameTimestamp, PlayersProvider provider){
-        this.gameTimestamp = gameTimestamp;
-        this.provider = provider;
-    }
 
     public SheetDomain(PlayersProvider provider){
         this.provider = provider;
     }
 
-    public void setGameTimestamp(long gameTimestamp){
-        this.gameTimestamp = gameTimestamp;
+    public void setTimestamp(long timestamp){
+        this.gameTimestamp = timestamp;
     }
 
-    public Player[] getPlayers(){
-        players = provider.read(gameTimestamp).toArray(new Player[0]);
-        return players;
+    public Sheet getSheet(){
+        List<Player> players = provider.read(gameTimestamp);
+        Player user = Lang.find(players, p -> p.getName() == null);
+        players.remove(user);
+        return new Sheet(user.getId(), user.getCells(), players.toArray(new Player[0]));
+    }
+
+    public void saveGame(Sheet sheet){
+        provider.update(gameTimestamp, getAllPlayers(sheet));
     }
 
     @Override
@@ -41,5 +46,14 @@ public class SheetDomain implements GamesOutport, DestroyUseCase {
     @Override
     public void destroy() {
 
+    }
+
+    private Player[] getAllPlayers(Sheet sheet){
+        Player[] allPlayers = new Player[sheet.getPlayers().length + 1];
+        allPlayers[0] = new Player(sheet.getId(), null, sheet.getCells());
+        for(int i=1; i<sheet.getPlayers().length+1; i++){
+            allPlayers[i] = sheet.getPlayers()[i - 1];
+        }
+        return allPlayers;
     }
 }

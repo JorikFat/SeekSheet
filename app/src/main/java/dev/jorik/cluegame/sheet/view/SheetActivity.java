@@ -16,27 +16,39 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.ImageViewCompat;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import dev.jorik.cluegame.Config;
 import dev.jorik.cluegame.R;
+import dev.jorik.cluegame.application.App;
+import dev.jorik.cluegame.games.presentation.GameListViewModel;
+import dev.jorik.cluegame.sheet.domain.SheetDomain;
 import dev.jorik.cluegame.sheet.domain.entity.Cell;
+import dev.jorik.cluegame.sheet.domain.entity.Player;
 import dev.jorik.cluegame.sheet.domain.entity.PlayerCells;
+import dev.jorik.cluegame.sheet.domain.entity.Sheet;
 import dev.jorik.cluegame.sheet.domain.entity.SheetCells;
 import dev.jorik.cluegame.sheet.domain.entity.Value;
 import dev.jorik.cluegame.modals.ConfirmDialog;
 import dev.jorik.cluegame.modals.NamesDialog;
 import dev.jorik.cluegame.modals.SelectionPopup;
+import dev.jorik.cluegame.sheet.presentation.SheetModelFactory;
+import dev.jorik.cluegame.sheet.presentation.SheetViewModel;
+import dev.jorik.cluegame.utils.Lang;
 
 import static android.graphics.Color.TRANSPARENT;
 import static dev.jorik.cluegame.utils.View.getIntColor;
 
 public class SheetActivity extends AppCompatActivity {
+    private SheetViewModel viewModel;
     private SelectionPopup selecting;
-    private Config config;
-    private SheetCells sheetCells;
+//    private Config config;
+//    private SheetCells sheetCells;
     private ArrayList<TextView> playersName = new ArrayList<>();
     private List<TableRow> sheetRows = new ArrayList<>();
 
@@ -48,35 +60,29 @@ public class SheetActivity extends AppCompatActivity {
         playersName.add(findViewById(R.id.tv_sheet_player3name));
         playersName.add(findViewById(R.id.tv_sheet_player4name));
         playersName.add(findViewById(R.id.tv_sheet_player5name));
+        initPlayRows();
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sheet);
-        config = new Config(PreferenceManager.getDefaultSharedPreferences(this));
+        SheetModelFactory factory = new SheetModelFactory(((App) getApplication()).getSheetDomain());
+        viewModel = new ViewModelProvider(this, factory).get(SheetViewModel.class);
         selecting = new SelectionPopup(this, (cellIcon, cell) -> {
-            setCellIcon(cellIcon, cell);
-
             ViewParent parentView = cellIcon.getParent();
-            if (parentView instanceof TableRow){
+            if (parentView instanceof TableRow){//ячейка пользователя
                 TableRow row = ((TableRow) cellIcon.getParent());
                 int rowIndex = sheetRows.indexOf(row);
-                sheetCells.setCell(rowIndex, cell);
-            } else {
+                viewModel.setCellValue(-1, rowIndex, cell);
+            } else {//ячейка опанента
                 TableRow row = ((TableRow) cellIcon.getParent().getParent());
                 int rowIndex = sheetRows.indexOf(row);
                 int columnIndex = ((LinearLayout)row.getChildAt(2)).indexOfChild(cellIcon);
-                sheetCells.getPlayers().get(columnIndex).setCell(rowIndex, cell);
+                viewModel.setCellValue(columnIndex, rowIndex, cell);
             }
         });
-
-        if (config.isNewGame()) initPlayers();
-        sheetCells = config.getSheet();
-
-        initPlayRows();
-        setPlayersName();
-        setTableIcons();
+        fillIcons(viewModel.getSheet());
     }
 
     @Override
@@ -89,10 +95,10 @@ public class SheetActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.omi_newGame_clearSheet){
             new ConfirmDialog(this, R.string.sure, R.string.sheet_clearTableWarning, () -> {
-                sheetCells = new SheetCells();
-                setPlayersName();
-                config.setNewGame(true);
-                initPlayers();
+//                sheetCells = new SheetCells();
+//                setPlayersName();
+//                config.setNewGame(true);
+//                initPlayers();
                 recreate();
             }).show();
             return true;
@@ -103,7 +109,8 @@ public class SheetActivity extends AppCompatActivity {
 
     @Override
     protected void onStop() {
-        config.saveSheet(sheetCells);
+//        config.saveSheet(sheetCells);
+        viewModel.onHide();
         super.onStop();
     }
 
@@ -129,6 +136,7 @@ public class SheetActivity extends AppCompatActivity {
         );
     }
 
+/*
     private void setTableIcons(){
         for(int r=0; r<sheetRows.size(); r++){
             TableRow row = sheetRows.get(r);
@@ -148,6 +156,7 @@ public class SheetActivity extends AppCompatActivity {
             if(0 < playersCount && playersCount < 5) removeCells();
         }
     }
+*/
 
     private void initPlayRows(){
         sheetRows.add(findViewById(R.id.TR_sheet_personGreen));
@@ -173,12 +182,15 @@ public class SheetActivity extends AppCompatActivity {
         sheetRows.add(findViewById(R.id.TR_sheet_placeCabinet));
     }
 
+/*
     private void setPlayersName(){
         for (int i = 0; i < sheetCells.getPlayers().size(); i++) {
             playersName.get(i).setText(sheetCells.getPlayers().get(i).getPlayerName());
         }
     }
+*/
 
+/*
     private void initPlayers(){
         new NamesDialog(this, (names, keepCells) -> {
             for (String name : names) {
@@ -189,17 +201,40 @@ public class SheetActivity extends AppCompatActivity {
             if(!keepCells) removeCells();
         }).show();
     }
+*/
 
+/*
     private String getInitials(String fullName){
         StringBuilder builder = new StringBuilder();
         for (String part : fullName.split(" "))
             builder.append(part.substring(0,1));
         return builder.toString();
     }
+*/
 
-    private void removeCells(){
+    private void fillIcons(Sheet sheet){
+        for(int r=0; r<sheetRows.size(); r++){
+            TableRow row = sheetRows.get(r);
+
+            ImageView cellView = (ImageView) row.getChildAt(1);
+            Cell cell = sheet.getCells()[r];
+            setCellIcon(cellView, cell);
+
+            for(int c=0; c<sheet.getPlayers().length; c++){
+                LinearLayout playersCell = (LinearLayout) row.getChildAt(2);
+                ImageView playerCellView = (ImageView) playersCell.getChildAt(c);
+                Cell playerCell = sheet.getPlayers()[c].getCells()[r];
+                setCellIcon(playerCellView, playerCell);
+            }
+
+            int playersCount = sheet.getPlayers().length;
+            if(0 < playersCount && playersCount < 5) removeCells(sheet);
+        }
+    }
+
+    private void removeCells(Sheet sheet){
         LinearLayout playersName = findViewById(R.id.LL_sheet_playersName);
-        int removeCount = playersName.getChildCount() - sheetCells.getPlayers().size();
+        int removeCount = playersName.getChildCount() - sheet.getPlayers().length;
         removeCells(playersName, removeCount);
         for(int r=0; r<sheetRows.size(); r++){
             LinearLayout cellsRow = (LinearLayout) sheetRows.get(r).getChildAt(2);

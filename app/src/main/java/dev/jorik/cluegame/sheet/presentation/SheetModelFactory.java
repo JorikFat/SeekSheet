@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModelProvider;
 import dev.jorik.cluegame.sheet.domain.SheetDomain;
 
 public class SheetModelFactory implements ViewModelProvider.Factory{
-    private SheetDomain domain;
+    private final SheetDomain domain;
 
     public SheetModelFactory(SheetDomain domain) {
         this.domain = domain;

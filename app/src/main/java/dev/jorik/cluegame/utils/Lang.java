@@ -22,6 +22,11 @@ public class Lang {
         return returnList;
     }
 
+    public static <T> T find(List<T> list, Condition<T> condition){
+        for(T t : list) if(condition.check(t)) return t;
+        return null;
+    }
+
     public static String concat(List<String> list, String separator){
         StringBuilder builder = new StringBuilder(list.get(0));
         for(int i = 1; i<list.size(); i++) builder.append(separator).append(list.get(i));
