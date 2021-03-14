@@ -37,7 +37,7 @@
 
     <style name="SheetTable.Header" parent="SheetTable.Cell">
         <item name="android:layout_weight">0.2</item>
-        <item name="android:textColor">@color/sheetBlue</item>
+        <item name="android:textColor">@color/colorAccent</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:textStyle">italic|bold</item>
     </style>
