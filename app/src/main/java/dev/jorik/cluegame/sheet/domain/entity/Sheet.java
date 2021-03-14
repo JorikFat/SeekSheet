@@ -6,6 +6,7 @@ public class Sheet {
     private Player[] players;
 
     public Sheet(long id, Cell[] cells, Player[] players) {
+        this.id = id;
         this.cells = cells;
         this.players = players;
     }
