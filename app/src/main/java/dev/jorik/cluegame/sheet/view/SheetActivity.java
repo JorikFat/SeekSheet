@@ -82,7 +82,9 @@ public class SheetActivity extends AppCompatActivity {
                 viewModel.setCellValue(columnIndex, rowIndex, cell);
             }
         });
-        fillIcons(viewModel.getSheet());
+        Sheet sheet = viewModel.getSheet();
+        fillPlayersName(sheet.getPlayers());
+        fillIcons(sheet);
     }
 
     @Override
@@ -211,6 +213,14 @@ public class SheetActivity extends AppCompatActivity {
         return builder.toString();
     }
 */
+
+    private void fillPlayersName(Player[] players){
+        for (int i = 0; i < players.length; i++) {
+            StringBuilder builder = new StringBuilder();
+            for (String part : players[i].getName().split(" ")) builder.append(part.substring(0,1));
+            playersName.get(i).setText(builder.toString());
+        }
+    }
 
     private void fillIcons(Sheet sheet){
         for(int r=0; r<sheetRows.size(); r++){
