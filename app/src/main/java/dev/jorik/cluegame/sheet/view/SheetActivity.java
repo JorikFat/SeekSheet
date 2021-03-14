@@ -37,6 +37,7 @@ import dev.jorik.cluegame.sheet.domain.entity.Value;
 import dev.jorik.cluegame.modals.ConfirmDialog;
 import dev.jorik.cluegame.modals.NamesDialog;
 import dev.jorik.cluegame.modals.SelectionPopup;
+import dev.jorik.cluegame.sheet.presentation.CellUpdate;
 import dev.jorik.cluegame.sheet.presentation.SheetModelFactory;
 import dev.jorik.cluegame.sheet.presentation.SheetViewModel;
 import dev.jorik.cluegame.utils.Lang;
@@ -80,6 +81,20 @@ public class SheetActivity extends AppCompatActivity {
                 int rowIndex = sheetRows.indexOf(row);
                 int columnIndex = ((LinearLayout)row.getChildAt(2)).indexOfChild(cellIcon);
                 viewModel.setCellValue(columnIndex, rowIndex, cell);
+            }
+        });
+        viewModel.getChangedCell().observe(this, new Observer<CellUpdate>() {
+            @Override
+            public void onChanged(CellUpdate cellUpdate) {
+                TableRow tableRow = sheetRows.get(cellUpdate.getCellIndex());
+                ImageView cell;
+                if(cellUpdate.getPlayerIndex() == -1){
+                    cell = ((ImageView) tableRow.getChildAt(1));
+                } else {
+                    LinearLayout playerCells = (LinearLayout) tableRow.getChildAt(2);
+                    cell = (ImageView) playerCells.getChildAt(cellUpdate.getPlayerIndex());
+                }
+                setCellIcon(cell, cellUpdate.getValue());
             }
         });
         Sheet sheet = viewModel.getSheet();
