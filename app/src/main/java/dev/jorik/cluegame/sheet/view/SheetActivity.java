@@ -24,6 +24,8 @@ import dev.jorik.cluegame.R;
 import dev.jorik.cluegame.application.App;
 import dev.jorik.cluegame.application.modals.ConfirmDialog;
 import dev.jorik.cluegame.application.modals.SelectionPopup;
+import dev.jorik.cluegame.databinding.ActivitySheetBinding;
+import dev.jorik.cluegame.databinding.PopupSelecticonBinding;
 import dev.jorik.cluegame.sheet.domain.entity.Cell;
 import dev.jorik.cluegame.sheet.domain.entity.Player;
 import dev.jorik.cluegame.sheet.domain.entity.Sheet;
@@ -35,29 +37,31 @@ import static android.graphics.Color.TRANSPARENT;
 import static dev.jorik.cluegame.utils.View.getIntColor;
 
 public class SheetActivity extends AppCompatActivity {
+    private ActivitySheetBinding binding;
     private SheetViewModel viewModel;
     private SelectionPopup selecting;
     private final List<TextView> playersName = new ArrayList<>();
     private final List<TableRow> sheetRows = new ArrayList<>();
 
     @Override
-    public void setContentView(int layoutResID) {
-        super.setContentView(layoutResID);
-        playersName.add(findViewById(R.id.tv_sheet_player1name));
-        playersName.add(findViewById(R.id.tv_sheet_player2name));
-        playersName.add(findViewById(R.id.tv_sheet_player3name));
-        playersName.add(findViewById(R.id.tv_sheet_player4name));
-        playersName.add(findViewById(R.id.tv_sheet_player5name));
+    public void setContentView(View view) {
+        super.setContentView(view);
+        playersName.add(binding.tvSheetPlayer1name);
+        playersName.add(binding.tvSheetPlayer2name);
+        playersName.add(binding.tvSheetPlayer3name);
+        playersName.add(binding.tvSheetPlayer4name);
+        playersName.add(binding.tvSheetPlayer5name);
         initPlayRows();
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sheet);
+        binding = ActivitySheetBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         SheetModelFactory factory = new SheetModelFactory(((App) getApplication()).getSheetDomain());
         viewModel = new ViewModelProvider(this, factory).get(SheetViewModel.class);
-        selecting = new SelectionPopup(this, (cellIcon, cell) -> {
+        selecting = new SelectionPopup(PopupSelecticonBinding.inflate(getLayoutInflater()), (cellIcon, cell) -> {
             ViewParent parentView = cellIcon.getParent();
             if (parentView instanceof TableRow){//ячейка пользователя
                 TableRow row = ((TableRow) cellIcon.getParent());
@@ -133,27 +137,27 @@ public class SheetActivity extends AppCompatActivity {
     }
 
     private void initPlayRows(){
-        sheetRows.add(findViewById(R.id.TR_sheet_personGreen));
-        sheetRows.add(findViewById(R.id.TR_sheet_personMustard));
-        sheetRows.add(findViewById(R.id.TR_sheet_personPeacock));
-        sheetRows.add(findViewById(R.id.TR_sheet_personPlum));
-        sheetRows.add(findViewById(R.id.TR_sheet_personScarlett));
+        sheetRows.add(binding.TRSheetPersonGreen);
+        sheetRows.add(binding.TRSheetPersonMustard);
+        sheetRows.add(binding.TRSheetPersonPeacock);
+        sheetRows.add(binding.TRSheetPersonPlum);
+        sheetRows.add(binding.TRSheetPersonScarlett);
 
-        sheetRows.add(findViewById(R.id.TR_sheet_toolCandleStick));
-        sheetRows.add(findViewById(R.id.TR_sheet_toolDagger));
-        sheetRows.add(findViewById(R.id.TR_sheet_toolRevolver));
-        sheetRows.add(findViewById(R.id.TR_sheet_toolRope));
-        sheetRows.add(findViewById(R.id.TR_sheet_toolWrench));
+        sheetRows.add(binding.TRSheetToolCandleStick);
+        sheetRows.add(binding.TRSheetToolDagger);
+        sheetRows.add(binding.TRSheetToolRevolver);
+        sheetRows.add(binding.TRSheetToolRope);
+        sheetRows.add(binding.TRSheetToolWrench);
 
-        sheetRows.add(findViewById(R.id.TR_sheet_placeBallroom));
-        sheetRows.add(findViewById(R.id.TR_sheet_placeBilliard));
-        sheetRows.add(findViewById(R.id.TR_sheet_placeWinterGarder));
-        sheetRows.add(findViewById(R.id.TR_sheet_placeDining));
-        sheetRows.add(findViewById(R.id.TR_sheet_placeBath));
-        sheetRows.add(findViewById(R.id.TR_sheet_placeKitchen));
-        sheetRows.add(findViewById(R.id.TR_sheet_placeLibrary));
-        sheetRows.add(findViewById(R.id.TR_sheet_placeLivingroom));
-        sheetRows.add(findViewById(R.id.TR_sheet_placeCabinet));
+        sheetRows.add(binding.TRSheetPlaceBallroom);
+        sheetRows.add(binding.TRSheetPlaceBilliard);
+        sheetRows.add(binding.TRSheetPlaceWinterGarder);
+        sheetRows.add(binding.TRSheetPlaceDining);
+        sheetRows.add(binding.TRSheetPlaceBath);
+        sheetRows.add(binding.TRSheetPlaceKitchen);
+        sheetRows.add(binding.TRSheetPlaceLibrary);
+        sheetRows.add(binding.TRSheetPlaceLivingroom);
+        sheetRows.add(binding.TRSheetPlaceCabinet);
     }
 
     private void fillPlayersName(Player[] players){

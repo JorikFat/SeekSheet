@@ -9,6 +9,7 @@ import android.widget.PopupWindow;
 
 import androidx.core.widget.ImageViewCompat;
 
+import dev.jorik.cluegame.databinding.PopupSelecticonBinding;
 import dev.jorik.cluegame.sheet.domain.entity.Cell;
 import dev.jorik.cluegame.sheet.domain.entity.Value;
 import dev.jorik.cluegame.R;
@@ -18,76 +19,71 @@ import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 import static dev.jorik.cluegame.utils.View.getIntColor;
 
 public class SelectionPopup {
-    private final Context context;
+    private PopupSelecticonBinding binding;
     private ImageView cell;
-    private final View view;
     private PopupWindow window;
     private Color color;
     private final ImageView[] icons = new ImageView[4];
     private int verticalOffset;
 
-    public SelectionPopup(Context context, SelectionCallback callback) {
-        this.context = context;
-        this.view = LayoutInflater.from(context).inflate(R.layout.popup_selecticon, null);
-        ImageView clear = view.findViewById(R.id.iv_select_clear);
-        clear.setOnClickListener(v -> {
+    public SelectionPopup(PopupSelecticonBinding binding, SelectionCallback callback) {
+        this.binding = binding;
+        binding.ivSelectClear.setOnClickListener(v -> {
             callback.selectIcon(cell, new Cell(Value.EMPTY, color));
             cell = null;
             window.dismiss();
         });
 
-        ImageView check = view.findViewById(R.id.iv_select_check);
-        icons[0] = check;
-        check.setOnClickListener(v -> {
+        icons[0] = binding.ivSelectCheck;;
+        binding.ivSelectCheck.setOnClickListener(v -> {
                     callback.selectIcon(cell, new Cell(Value.CHECK, color));
                     cell = null;
                     window.dismiss();
                 });
 
-        ImageView cross = view.findViewById(R.id.iv_select_cross);
-        icons[1] = cross;
-        cross.setOnClickListener(v -> {
+        icons[1] = binding.ivSelectCross;
+        binding.ivSelectCross.setOnClickListener(v -> {
                     callback.selectIcon(cell, new Cell(Value.CROSS, color));
                     cell = null;
                     window.dismiss();
                 });
 
-        ImageView exclamation = view.findViewById(R.id.iv_select_exclamation);
-        icons[2] = exclamation;
-        exclamation.setOnClickListener(v -> {
+        icons[2] = binding.ivSelectExclamation;
+        binding.ivSelectExclamation.setOnClickListener(v -> {
             callback.selectIcon(cell, new Cell(Value.EXCLAMATION, color));
             cell = null;
             window.dismiss();
         });
 
-        ImageView question = view.findViewById(R.id.iv_select_question);
-        icons[3] = question;
-        question.setOnClickListener(v -> {
+        icons[3] = binding.ivSelectQuestion;
+        binding.ivSelectQuestion.setOnClickListener(v -> {
             callback.selectIcon(cell, new Cell(Value.QUESTION, color));
             cell = null;
             window.dismiss();
         });
 
-        view.findViewById(R.id.view_selector_black).setOnClickListener(view -> setColor(Color.BLACK));
-        view.findViewById(R.id.view_selector_red).setOnClickListener(view -> setColor(Color.RED));
-        view.findViewById(R.id.view_selector_green).setOnClickListener(view -> setColor(Color.GREEN));
-        view.findViewById(R.id.view_selector_blue).setOnClickListener(view -> setColor(Color.BLUE));
-        view.findViewById(R.id.view_selector_gray).setOnClickListener(view -> setColor(Color.GRAY));
-        view.findViewById(R.id.view_selector_cyan).setOnClickListener(view -> setColor(Color.CYAN));
-        view.findViewById(R.id.view_selector_magenta).setOnClickListener(view -> setColor(Color.MAGENTA));
-        view.findViewById(R.id.view_selector_yellow).setOnClickListener(view -> setColor(Color.YELLOW));
-        this.window = new PopupWindow(view, WRAP_CONTENT, WRAP_CONTENT, true);
+        binding.viewSelectorBlack.setOnClickListener(view -> setColor(Color.BLACK));
+        binding.viewSelectorRed.setOnClickListener(view -> setColor(Color.RED));
+        binding.viewSelectorGreen.setOnClickListener(view -> setColor(Color.GREEN));
+        binding.viewSelectorBlue.setOnClickListener(view -> setColor(Color.BLUE));
+        binding.viewSelectorGray.setOnClickListener(view -> setColor(Color.GRAY));
+        binding.viewSelectorCyan.setOnClickListener(view -> setColor(Color.CYAN));
+        binding.viewSelectorMagenta.setOnClickListener(view -> setColor(Color.MAGENTA));
+        binding.viewSelectorYellow.setOnClickListener(view -> setColor(Color.YELLOW));
+        this.window = new PopupWindow(binding.getRoot(), WRAP_CONTENT, WRAP_CONTENT, true);
         this.color = Color.BLACK;
     }
 
     public void show(ImageView cell){
         this.cell = cell;
-        if (view.getHeight() > 0) verticalOffset = (int) ((view.getHeight() + context.getResources().getDimension(R.dimen.rowHeight)) * -1);
+        View root = binding.getRoot();
+        if (root.getHeight() > 0) verticalOffset = (int) ((root.getHeight() + root.getContext().getResources().getDimension(R.dimen.rowHeight)) * -1);
         window.showAsDropDown(cell, 0, verticalOffset);
     }
 
     private void setColor(Color color){
         this.color = color;
+        Context context = binding.getRoot().getContext();
         for(ImageView image :icons){
             ImageViewCompat.setImageTintList(image, ColorStateList.valueOf(getIntColor(context, color)));
         }
