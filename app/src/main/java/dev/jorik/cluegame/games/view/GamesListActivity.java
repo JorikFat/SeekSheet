@@ -46,12 +46,11 @@ public class GamesListActivity extends AppCompatActivity {
         });
         binding.rvGamesListList.setAdapter(adapter);
         viewModel = new ViewModelProvider(this, new ViewModelFactory(simpleLocationService())).get(GameListViewModel.class);
-        viewModel.getGamesProvider().observe(this, games -> adapter.setData(games));
-        binding.btnGamesListCreate.setOnClickListener(view -> new NamesDialog(GamesListActivity.this,
-                (names, keepCells) -> {
-                    viewModel.createGame(names, keepCells);
-                    startActivity(new Intent(GamesListActivity.this, SheetActivity.class));
-                }).show());
+        viewModel.getGamesProvider().observe(this, games -> {
+            adapter.setData(games);
+            if(games.isEmpty()) showCreating();
+        });
+        binding.btnGamesListCreate.setOnClickListener(view -> showCreating());
         DividerItemDecoration divider = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
         divider.setDrawable(ContextCompat.getDrawable(this, R.drawable.divider));
         binding.rvGamesListList.addItemDecoration(divider);
@@ -77,5 +76,14 @@ public class GamesListActivity extends AppCompatActivity {
             return true;
         });
         menu.show();
+    }
+
+    private void showCreating(){
+        Intent sheetIntent = new Intent(GamesListActivity.this, SheetActivity.class);
+        new NamesDialog(GamesListActivity.this,
+                (names, keepCells) -> {
+                    viewModel.createGame(names, keepCells);
+                    startActivity(sheetIntent);
+                }).show();
     }
 }
