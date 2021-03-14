@@ -5,8 +5,13 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
+import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.DividerItemDecoration;
 
+import dev.jorik.cluegame.R;
 import dev.jorik.cluegame.application.App;
 import dev.jorik.cluegame.application.modals.NamesDialog;
 import dev.jorik.cluegame.databinding.ActivityGameslistBinding;
@@ -37,6 +42,9 @@ public class GamesListActivity extends AppCompatActivity {
                     viewModel.createGame(names, keepCells);
                     startActivity(new Intent(GamesListActivity.this, SheetActivity.class));
                 }).show());
+        DividerItemDecoration divider = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
+        divider.setDrawable(ContextCompat.getDrawable(this, R.drawable.divider));
+        binding.rvGamesListList.addItemDecoration(divider);
     }
 
     private GamesDomain simpleLocationService(){//todo вынести в LS
