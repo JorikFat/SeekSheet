@@ -1,7 +1,7 @@
 # SeekSheet
 Demo project vith AAC components
 
-##Used components:
+## Used components:
 *ViewBinding
 *ViewModel
 *LiveData
