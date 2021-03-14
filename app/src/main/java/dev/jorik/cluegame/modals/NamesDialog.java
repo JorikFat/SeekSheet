@@ -15,8 +15,8 @@ import dev.jorik.cluegame.R;
 import static dev.jorik.cluegame.utils.Platform.getString;
 
 public class NamesDialog extends AlertDialog {
-    private EditText[] nameFields = new EditText[5];
-    private CheckBox keepPlayers;
+    private final EditText[] nameFields = new EditText[5];
+    private final CheckBox keepPlayers;
 
     public NamesDialog(Context context, CreateCallback callback) {
         super(context);
@@ -31,11 +31,7 @@ public class NamesDialog extends AlertDialog {
         setTitle(R.string.sheet_initPlayersNames);
         setButton(BUTTON_POSITIVE, context.getString(R.string.start), (d, i) -> {
             List<String> names = new ArrayList<>();
-            for (EditText field : nameFields){
-                String nameField = getString(field);
-                if (nameField.isEmpty()) continue;
-                else names.add(nameField);
-            }
+            for (EditText field : nameFields) names.add(getString(field));
             callback.onCreate(names.toArray(new String[0]), keepPlayers.isChecked());
         });
         setCancelable(false);

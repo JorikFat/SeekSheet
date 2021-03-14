@@ -169,6 +169,10 @@ public class SheetActivity extends AppCompatActivity {
 
     private void fillPlayersName(Player[] players){
         for (int i = 0; i < players.length; i++) {
+            if (players[i].getName().isEmpty()){
+                playersName.get(i).setText(players[i].getName());
+                continue;
+            }
             StringBuilder builder = new StringBuilder();
             for (String part : players[i].getName().split(" ")) builder.append(part.substring(0,1));
             playersName.get(i).setText(builder.toString());
