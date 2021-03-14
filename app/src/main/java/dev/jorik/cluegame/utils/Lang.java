@@ -6,10 +6,6 @@ import java.util.Collections;
 import java.util.List;
 
 public class Lang {
-    public static <T> T[] filter(T[] array, Condition<T> condition){
-        return filter(Arrays.asList(array), condition).toArray(array);
-    }
-
     public static <T> List<T> filter(List<T> list, Condition<T> condition){
         List<T> tempList = new ArrayList<>();
         for(T t : list) if(condition.check(t)) tempList.add(t);

@@ -3,6 +3,7 @@ package dev.jorik.cluegame.games.presentation;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -29,7 +30,7 @@ public class GameListViewModel extends BaseViewModel {
     }
 
     public void createGame(String[] names, boolean keepCells){
-        String[] gamePlayers = keepCells ? names : filter(names, name -> !name.isEmpty());
+        String[] gamePlayers = keepCells ? names : filter(Arrays.asList(names), name -> !name.isEmpty()).toArray(new String[0]);
         Game newGame = new Game(new Date(), gamePlayers);
         domain.createGame(newGame);//todo распаралелить
         games.add(newGame);

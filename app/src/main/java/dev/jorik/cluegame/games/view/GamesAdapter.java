@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dev.jorik.cluegame.R;
+import dev.jorik.cluegame.databinding.ItemGameBinding;
 import dev.jorik.cluegame.games.domain.Game;
 
 public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.GameViewHolder> {
@@ -30,14 +31,12 @@ public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.GameViewHold
     @Override
     public GameViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.item_game, parent, false);
-        return new GameViewHolder(view);
+        return new GameViewHolder(ItemGameBinding.inflate(inflater, parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull GameViewHolder holder, int position) {
-        Game game = data.get(position);
-        holder.bind(game);
+        holder.bind(data.get(position));
     }
 
     @Override
@@ -56,18 +55,17 @@ public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.GameViewHold
     }
 
     class GameViewHolder extends RecyclerView.ViewHolder{
-        private final LinearLayout names;
-        private final TextView date;
+        private final ItemGameBinding binding;
 
-        public GameViewHolder(@NonNull View itemView) {
-            super(itemView);
-            names = itemView.findViewById(R.id.LL_gameItem_players);
-            date = itemView.findViewById(R.id.tv_gameItem_date);
+        public GameViewHolder(ItemGameBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
             itemView.setOnClickListener(view -> callback.onItemClick(data.get(getAdapterPosition())));
         }
 
         public void bind(Game game){
-            date.setText(dateFormat.format(game.creatingDate));
+            binding.tvGameItemDate.setText(dateFormat.format(game.creatingDate));
+            LinearLayout names = binding.LLGameItemPlayers;
             int countDiff = names.getChildCount() - game.getPlayersName().length;
             if (countDiff > 0){
                 for(int i=0; i<countDiff; i++) names.removeViewAt(names.getChildCount()-1);

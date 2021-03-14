@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     >
 
-    <androidx.recyclerview.widget.RecyclerView android:id="@+id/tv_gamesList_list"
+    <androidx.recyclerview.widget.RecyclerView android:id="@+id/rv_gamesList_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
