@@ -4,15 +4,17 @@ android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
 
+
     defaultConfig {
         applicationId "dev.jorik.cluegame"
         minSdkVersion 16
         targetSdkVersion 30
         versionCode 1
-        versionName "1.0.0 [385]"
+        versionName "1.0.0 [388]"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+    project.archivesBaseName = "SeekSheet_"+defaultConfig.versionName
 
     buildTypes {
         release {
