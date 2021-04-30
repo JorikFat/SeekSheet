@@ -10,7 +10,6 @@ public class GamesDomain implements DestroyUseCase {
 
     public GamesDomain(GamesProvider provider) {
         this.provider = provider;
-        this.outport = outport;
     }
 
     public List<Game> getGames(){

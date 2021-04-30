@@ -6,8 +6,8 @@ import androidx.room.TypeConverters;
 
 import java.util.Date;
 
-import dev.jorik.cluegame.utils.Wrap;
 import dev.jorik.cluegame.games.domain.Game;
+import dev.jorik.cluegame.utils.Wrap;
 
 
 @Entity(tableName = GamesDao.table)

@@ -4,13 +4,8 @@ import androidx.lifecycle.ViewModel;
 
 import com.hadilq.liveevent.LiveEvent;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import dev.jorik.cluegame.application.BaseViewModel;
 import dev.jorik.cluegame.sheet.domain.SheetDomain;
 import dev.jorik.cluegame.sheet.domain.entity.Cell;
-import dev.jorik.cluegame.sheet.domain.entity.Player;
 import dev.jorik.cluegame.sheet.domain.entity.Sheet;
 
 public class SheetViewModel extends ViewModel {

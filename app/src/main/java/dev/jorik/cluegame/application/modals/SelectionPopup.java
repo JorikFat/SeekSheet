@@ -2,24 +2,23 @@ package dev.jorik.cluegame.application.modals;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 
 import androidx.core.widget.ImageViewCompat;
 
+import dev.jorik.cluegame.R;
 import dev.jorik.cluegame.databinding.PopupSelecticonBinding;
 import dev.jorik.cluegame.sheet.domain.entity.Cell;
-import dev.jorik.cluegame.sheet.domain.entity.Value;
-import dev.jorik.cluegame.R;
 import dev.jorik.cluegame.sheet.domain.entity.Color;
+import dev.jorik.cluegame.sheet.domain.entity.Value;
 
 import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 import static dev.jorik.cluegame.utils.View.getIntColor;
 
 public class SelectionPopup {
-    private PopupSelecticonBinding binding;
+    private final PopupSelecticonBinding binding;
     private ImageView cell;
     private PopupWindow window;
     private Color color;
@@ -34,7 +33,7 @@ public class SelectionPopup {
             window.dismiss();
         });
 
-        icons[0] = binding.ivSelectCheck;;
+        icons[0] = binding.ivSelectCheck;
         binding.ivSelectCheck.setOnClickListener(v -> {
                     callback.selectIcon(cell, new Cell(Value.CHECK, color));
                     cell = null;
